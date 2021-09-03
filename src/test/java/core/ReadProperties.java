@@ -7,7 +7,7 @@ public final class ReadProperties {
     private static ReadProperties instance;
     private static Properties properties;
 
-    private ReadProperties() {
+    public ReadProperties() {
         properties = new Properties();
         try {
             properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
