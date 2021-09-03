@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Diploma project of the site QASE.IO" />
+        <module name="Diploma_project_of_the_site_QASE.IO" />
       </profile>
     </annotationProcessing>
   </component>
