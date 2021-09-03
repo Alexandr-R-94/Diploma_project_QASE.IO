@@ -1,4 +1,4 @@
-package page;
+package pages;
 
 import baseEntities.BasePage;
 import org.openqa.selenium.NoSuchElementException;
