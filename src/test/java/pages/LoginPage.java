@@ -1,27 +1,54 @@
 package pages;
 
+import baseEntities.BasePage;
+import core.BrowsersService;
+import core.ReadProperties;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
+
+    public LoginPage(BrowsersService browsersService, boolean openPageByURL) {
+        super(browsersService, openPageByURL);
+    }
+
+    @Override
+    protected void openPage() {
+        browsersService.getDriver().get(ReadProperties.getInstance().getURL());
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        try {
+            return titleLogo.isDisplayed();
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
+
+    @FindBy(className = "logo")
+    public WebElement titleLogo;
 
     @FindBy(id = "inputEmail")
-    private WebElement emailInput;
+    public WebElement emailInput;
 
     @FindBy(id = "inputPassword")
-    private WebElement passwordInput;
+    public WebElement passwordInput;
 
     @FindBy(id = "btnLogin")
-    private WebElement loginBtn;
+    public WebElement loginBtn;
 
 
-    public void setEmail(String email) {
-        emailInput.sendKeys(email);
+    public void setEmail(String text) {
+        emailInput.sendKeys(text);
     }
-    public void setPassword(String password) {
-        passwordInput.sendKeys(password);
+    public void setPassword(String text) {
+        passwordInput.sendKeys(text);
     }
-    public void LoginButton() {
-        emailInput.click();
+    public void loginButton() {loginBtn.click();
     }
+
+
 }

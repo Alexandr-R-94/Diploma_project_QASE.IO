@@ -7,8 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+
 public class BrowsersService {
-    private WebDriver webDriver = null;
+    private WebDriver driver;
+
 
     public BrowsersService() {
 
@@ -17,23 +19,22 @@ public class BrowsersService {
                 WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setHeadless(ReadProperties.getInstance().isHeadless());
-                chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--start-maximized");
-                webDriver = new ChromeDriver(chromeOptions);
+                driver = new ChromeDriver(chromeOptions);
                 break;
 
             case "firefox":
                 WebDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
 
-                webDriver = new FirefoxDriver();
+                driver = new FirefoxDriver();
                 break;
 
             default:
                 System.out.println("Browser " + ReadProperties.getInstance().getBrowserName() + " is not supported.");
         }
     }
+
     public WebDriver getDriver() {
-        return webDriver   ;
+        return driver;
     }
 
 

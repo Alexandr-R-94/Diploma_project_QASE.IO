@@ -1,33 +1,58 @@
 package pages;
 
+import baseEntities.BasePage;
+import core.BrowsersService;
+import core.ReadProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProjectPage {
+public class ProjectPage extends BasePage {
+
+    private String endpoint = "/projects";
+
+    public ProjectPage(BrowsersService browsersService, boolean openPageByURL) {
+        super(browsersService, openPageByURL);
+    }
+
+    @Override
+    protected void openPage() {
+        browsersService.getDriver().get(ReadProperties.getInstance().getURL() + endpoint);
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        try {
+            return titleLabel.isDisplayed();
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
 
     @FindBy(xpath = "//span[.='Projects']")
-    private WebElement projectsBtn;
+    public WebElement projectsBtn;
 
     @FindBy(xpath = "//span[.='Workspace']")
-    private WebElement workspaceBtn;
+    public WebElement workspaceBtn;
 
     @FindBy(xpath = "//span[.='Billing']")
-    private WebElement billingBtn;
+    public WebElement billingBtn;
 
     @FindBy(xpath = "//span[.='Reports']")
-    private WebElement reportsBtn;
+    public WebElement reportsBtn;
 
     @FindBy(id = "createButton")
-    private WebElement newProjectBtn;
+    public WebElement newProjectBtn;
 
     @FindBy(xpath = "//h1[text()='Projects']")
-    private WebElement titleLabel;
+    public WebElement titleLabel;
 
     private final static String projectBtn = "//a[.='replace']";
 
-//    public WebElement getProjectButton(String projectName) {
-//        return driver.findElement(By.xpath(projectBtn.replace("replace", projectName))); }
+   public WebElement getProjectButton(String projectName) {
+       return driver.findElement(By.xpath(projectBtn.replace("replace", projectName))); }
 
 
     public void projectsButton() {
@@ -49,5 +74,7 @@ public class ProjectPage {
     public void newProjectButton() {
         newProjectBtn.click();
     }
+
+
 
 }

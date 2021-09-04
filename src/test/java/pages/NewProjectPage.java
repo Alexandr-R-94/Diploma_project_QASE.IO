@@ -1,6 +1,8 @@
 package pages;
 
 import baseEntities.BasePage;
+import core.BrowsersService;
+import core.ReadProperties;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,13 +22,13 @@ public class NewProjectPage extends BasePage {
     private WebElement createprojectbutton;
     private final static String endpoint = "project/create";
 
-    public NewProjectPage(WebDriver driver, boolean openPageByURL) {
-        super(driver, openPageByURL);
+    public NewProjectPage(BrowsersService browsersService, boolean openPageByURL) {
+        super(browsersService, openPageByURL);
     }
 
     @Override
     protected void openPage() {
-        driver.get(properties.getURL() + endpoint);
+        browsersService.getDriver().get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override

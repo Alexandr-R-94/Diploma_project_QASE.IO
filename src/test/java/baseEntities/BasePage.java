@@ -1,12 +1,14 @@
 package baseEntities;
 
+import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+
 public abstract class BasePage {
     protected static final int WAIT_FOR_PAGE_LOADING_SEC = 5;
-
+    protected final BrowsersService browsersService;
     protected WebDriver driver;
     protected ReadProperties properties;
 
@@ -14,9 +16,10 @@ public abstract class BasePage {
 
     public abstract boolean isPageOpened();
 
-    public BasePage(WebDriver driver, boolean openPageByURL) {
-        this.driver = driver;
-        properties = new ReadProperties();
+    public BasePage(BrowsersService browsersService, boolean openPageByURL) {
+        this.browsersService = browsersService;
+        this.driver = browsersService.getDriver();
+        properties = ReadProperties.getInstance();
 
         PageFactory.initElements(this.driver, this);
 
@@ -32,18 +35,14 @@ public abstract class BasePage {
         boolean isPageOpenedIndicator = isPageOpened();
 
         while (!isPageOpenedIndicator && secondsCount < WAIT_FOR_PAGE_LOADING_SEC) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            browsersService.sleep(1000);
             secondsCount++;
             isPageOpenedIndicator = isPageOpened();
         }
-
-        if (!isPageOpenedIndicator) {
-            throw new AssertionError("Page was not opened");
+            if (!isPageOpenedIndicator) {
+                throw new AssertionError("Page was not opened");
+            }
         }
     }
-}
+
 
