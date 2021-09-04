@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public final class ReadProperties {
     private static ReadProperties instance;
-    private static Properties properties;
+     static Properties properties;
 
     public ReadProperties() {
         properties = new Properties();
