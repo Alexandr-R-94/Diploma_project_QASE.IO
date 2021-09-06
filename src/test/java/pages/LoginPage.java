@@ -4,7 +4,6 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -40,6 +39,9 @@ public class LoginPage extends BasePage {
     @FindBy(id = "btnLogin")
     public WebElement loginBtn;
 
+    @FindBy(className = "form-control-feedback")
+    public WebElement errorSelector;
+
 
     public void setEmail(String text) {
         emailInput.sendKeys(text);
@@ -47,8 +49,8 @@ public class LoginPage extends BasePage {
     public void setPassword(String text) {
         passwordInput.sendKeys(text);
     }
-    public void loginButton() {loginBtn.click();
-    }
+    public void loginButton() {loginBtn.click(); }
+    public void errorSelectorText() {errorSelector.getText(); }
 
 
 }
