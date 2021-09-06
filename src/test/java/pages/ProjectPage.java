@@ -51,8 +51,8 @@ public class ProjectPage extends BasePage {
 
     private final static String projectBtn = "//a[.='replace']";
 
-   public WebElement getProjectButton(String projectName) {
-       return driver.findElement(By.xpath(projectBtn.replace("replace", projectName))); }
+    public WebElement getProjectButton(String projectName) {
+        return driver.findElement(By.xpath(projectBtn.replace("replace", projectName))); }
 
 
     public void projectsButton() {
@@ -74,7 +74,5 @@ public class ProjectPage extends BasePage {
     public void newProjectButton() {
         newProjectBtn.click();
     }
-
-
 
 }

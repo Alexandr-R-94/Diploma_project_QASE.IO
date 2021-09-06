@@ -10,6 +10,7 @@ public class SmokeTest extends BaseTest {
 
     @Test
     public void loginTestWithCorrectData() {
+        logger.info("Ввод корректных данных логина и пароля");
         LoginPage loginPage = new LoginPage(browsersService, true);
         loginPage.setEmail(properties.getEmail());
         loginPage.setPassword(properties.getPassword());
@@ -21,6 +22,7 @@ public class SmokeTest extends BaseTest {
     }
     @Test
     public void loginTestWithCorrectDataSecond() {
+
         LoginPage loginPage = new LoginPage(browsersService, true);
         loginPage.setEmail("bestwarlock94@gmail.com");
         loginPage.setPassword("T@D_2Fk7Kt8Qp5q");
@@ -28,6 +30,15 @@ public class SmokeTest extends BaseTest {
 
 
         Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
+
+    }
+
+    @Test
+    public void createNewProject(){
+        LoginPage loginPage = new LoginPage(browsersService, true);
+        loginPage.setEmail(properties.getEmail());
+        loginPage.setPassword(properties.getPassword());
+        loginPage.loginButton();
 
     }
 }
