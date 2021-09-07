@@ -45,8 +45,8 @@ public class LoginPage extends BasePage {
     public void setPassword(String text) {
         passwordInput.sendKeys(text);
     }
-    public void loginButton() {loginBtn.click();
-    }
+    public void loginButton() {loginBtn.click(); }
+    public void errorSelectorText() {errorSelector.getText(); }
 
 
 }

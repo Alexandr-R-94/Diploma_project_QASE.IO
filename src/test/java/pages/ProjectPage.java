@@ -29,6 +29,14 @@ public class ProjectPage extends BasePage {
     @FindBy(xpath = "//h1[text()='Projects']")
     public WebElement titleLabel;
     private String endpoint = "projects";
+  
+  @FindBy(id = "HW_badge_cont")
+    public WebElement bellBtn;
+  
+   private final static String projectBtn = "//a[.='replace']";
+
+    public WebElement getProjectButton(String projectName) {
+        return driver.findElement(By.xpath(projectBtn.replace("replace", projectName))); }
 
 
     public ProjectPage(BrowsersService browsersService, boolean openPageByURL) {
@@ -49,12 +57,6 @@ public class ProjectPage extends BasePage {
         }
     }
 
-    private final static String projectBtn = "//a[.='replace']";
-
-    public WebElement getProjectButton(String projectName) {
-        return driver.findElement(By.xpath(projectBtn.replace("replace", projectName))); }
-
-
     public void projectsButton() {
         projectsBtn.click();
     }
@@ -74,5 +76,8 @@ public class ProjectPage extends BasePage {
     public void newProjectButton() {
         newProjectBtn.click();
     }
+
+    public void bellButton() {bellBtn.click();}
+
 
 }
