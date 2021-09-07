@@ -12,12 +12,12 @@ public class NewProjectPage extends BasePage {
 
     @FindBy(xpath = "//h1[text() = 'New Project']")
     private WebElement title;
-    @FindBy(id ="inputTitle")
+    @FindBy(id = "inputTitle")
     private WebElement projectnameinput;
-    @FindBy(id ="inputCode")
+    @FindBy(id = "inputCode")
     private WebElement projectcodeinput;
-    @FindBy(id ="inputDescription")
-    private WebElement description;
+    @FindBy(id = "inputDescription")
+    private WebElement descriptioninput;
     @FindBy(xpath = "//button[text() ='Create project']")
     private WebElement createprojectbutton;
     private final static String endpoint = "project/create";
@@ -38,5 +38,22 @@ public class NewProjectPage extends BasePage {
         } catch (NoSuchElementException ex) {
             return false;
         }
+    }
+
+
+    public void setName(String name) {
+        projectnameinput.sendKeys(name);
+    }
+
+    public void setCode(String code) {
+        projectcodeinput.sendKeys(code);
+    }
+
+    public void setDescription(String description) {
+        descriptioninput.sendKeys(description);
+    }
+
+    public void addButtonClick() {
+        createprojectbutton.click();
     }
 }

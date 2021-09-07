@@ -11,7 +11,25 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProjectPage extends BasePage {
 
-    private String endpoint = "/projects";
+    @FindBy(xpath = "//span[.='Projects']")
+    public WebElement projectsBtn;
+
+    @FindBy(xpath = "//span[.='Workspace']")
+    public WebElement workspaceBtn;
+
+    @FindBy(xpath = "//span[.='Billing']")
+    public WebElement billingBtn;
+
+    @FindBy(xpath = "//span[.='Reports']")
+    public WebElement reportsBtn;
+
+    @FindBy(id = "createButton")
+    public WebElement newProjectBtn;
+
+    @FindBy(xpath = "//h1[text()='Projects']")
+    public WebElement titleLabel;
+    private String endpoint = "projects";
+
 
     public ProjectPage(BrowsersService browsersService, boolean openPageByURL) {
         super(browsersService, openPageByURL);
@@ -30,24 +48,6 @@ public class ProjectPage extends BasePage {
             return false;
         }
     }
-
-    @FindBy(xpath = "//span[.='Projects']")
-    public WebElement projectsBtn;
-
-    @FindBy(xpath = "//span[.='Workspace']")
-    public WebElement workspaceBtn;
-
-    @FindBy(xpath = "//span[.='Billing']")
-    public WebElement billingBtn;
-
-    @FindBy(xpath = "//span[.='Reports']")
-    public WebElement reportsBtn;
-
-    @FindBy(id = "createButton")
-    public WebElement newProjectBtn;
-
-    @FindBy(xpath = "//h1[text()='Projects']")
-    public WebElement titleLabel;
 
     private final static String projectBtn = "//a[.='replace']";
 
