@@ -45,6 +45,8 @@ public class NewProjectPage extends BasePage {
         projectnameinput.sendKeys(name);
     }
 
+    public void cleanCode() {projectcodeinput.clear();}
+
     public void setCode(String code) {
         projectcodeinput.sendKeys(code);
     }

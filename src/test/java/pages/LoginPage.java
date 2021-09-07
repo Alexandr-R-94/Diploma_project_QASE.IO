@@ -10,16 +10,19 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends BasePage {
 
     @FindBy(className = "logo")
-    public WebElement titleLogo;
+    private WebElement titleLogo;
 
     @FindBy(id = "inputEmail")
-    public WebElement emailInput;
+    private WebElement emailInput;
 
     @FindBy(id = "inputPassword")
-    public WebElement passwordInput;
+    private WebElement passwordInput;
 
     @FindBy(id = "btnLogin")
-    public WebElement loginBtn;
+    private WebElement loginBtn;
+
+    @FindBy(className = "form-control-feedback")
+    private WebElement errorSelector;
 
     public LoginPage(BrowsersService browsersService, boolean openPageByURL) {
         super(browsersService, openPageByURL);

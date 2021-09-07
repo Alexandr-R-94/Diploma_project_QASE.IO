@@ -21,6 +21,7 @@ public class TestRepositoryPage extends BasePage {
     private WebElement suitebutton;
     @FindBy(id = "create-case-button")
     private WebElement casebutton;
+
     private final static String endpoint = "project/ABC";
 
     public TestRepositoryPage(BrowsersService browsersService, boolean openPageByURL) {

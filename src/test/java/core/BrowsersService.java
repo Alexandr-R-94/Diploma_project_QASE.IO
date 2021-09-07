@@ -2,14 +2,18 @@ package core;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
+import models.LoginBuilder;
+import models.ProjectBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeSuite;
 
 
 public class BrowsersService {
     private WebDriver driver;
+
 
     public BrowsersService() {
 

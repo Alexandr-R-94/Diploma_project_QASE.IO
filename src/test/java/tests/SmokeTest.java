@@ -1,6 +1,7 @@
 package tests;
 
 import baseEntities.BaseTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -39,6 +40,8 @@ public class SmokeTest extends BaseTest {
         loginStep.loginWithBuilder(loginBuilder);
         AddProjectStep addProjectStep = new AddProjectStep(browsersService);
                 addProjectStep.addProject(projectBuilder);
+
+                Assert.assertEquals(browsersService.getDriver().findElement(By.xpath("//p[@class='header']")).getText(), projectBuilder.getProjectName());
 
 
 //        RadioButton radioButton = new RadioButton(browsersService, By.name("access_type"));

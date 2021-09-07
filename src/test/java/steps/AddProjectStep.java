@@ -16,6 +16,7 @@ public class AddProjectStep extends BaseStep {
         projectPage.newProjectButton();
         NewProjectPage newProjectPage = new NewProjectPage(browsersService, false);
         newProjectPage.setName(projectBuilder.getProjectName());
+        newProjectPage.cleanCode();
         newProjectPage.setCode(projectBuilder.getProjectCode());
         newProjectPage.setDescription(projectBuilder.getDescription());
         newProjectPage.addButtonClick();
