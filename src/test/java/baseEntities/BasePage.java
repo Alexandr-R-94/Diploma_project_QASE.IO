@@ -39,10 +39,10 @@ public abstract class BasePage {
             secondsCount++;
             isPageOpenedIndicator = isPageOpened();
         }
-            if (!isPageOpenedIndicator) {
-                throw new AssertionError("Page was not opened");
-            }
+        if (!isPageOpenedIndicator) {
+            throw new AssertionError("Page was not opened");
         }
     }
+}
 
 

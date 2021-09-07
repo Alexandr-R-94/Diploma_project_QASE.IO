@@ -11,7 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BrowsersService {
     private WebDriver driver;
 
-
     public BrowsersService() {
 
         switch (ReadProperties.getInstance().getBrowserName().toLowerCase()) {
@@ -36,7 +35,6 @@ public class BrowsersService {
     public WebDriver getDriver() {
         return driver;
     }
-
 
     public void sleep ( long millis){
         try {

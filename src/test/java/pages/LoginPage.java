@@ -9,6 +9,18 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+    @FindBy(className = "logo")
+    public WebElement titleLogo;
+
+    @FindBy(id = "inputEmail")
+    public WebElement emailInput;
+
+    @FindBy(id = "inputPassword")
+    public WebElement passwordInput;
+
+    @FindBy(id = "btnLogin")
+    public WebElement loginBtn;
+
     public LoginPage(BrowsersService browsersService, boolean openPageByURL) {
         super(browsersService, openPageByURL);
     }
@@ -26,22 +38,6 @@ public class LoginPage extends BasePage {
             return false;
         }
     }
-
-    @FindBy(className = "logo")
-    public WebElement titleLogo;
-
-    @FindBy(id = "inputEmail")
-    public WebElement emailInput;
-
-    @FindBy(id = "inputPassword")
-    public WebElement passwordInput;
-
-    @FindBy(id = "btnLogin")
-    public WebElement loginBtn;
-
-    @FindBy(className = "form-control-feedback")
-    public WebElement errorSelector;
-
 
     public void setEmail(String text) {
         emailInput.sendKeys(text);
