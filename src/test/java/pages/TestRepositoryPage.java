@@ -12,15 +12,15 @@ public class TestRepositoryPage extends BasePage {
     @FindBy(xpath = "//h1[text() = 'Test repository']")
     private WebElement title;
     @FindBy(xpath = "//a[@title = 'Import']")
-    private WebElement importbutton;
+    private WebElement importButton;
     @FindBy(xpath = "//button[@class = 'btn btn-secondary mt-3 me-2']")
-    private WebElement exportbutton;
+    private WebElement exportButton;
     @FindBy(xpath = "//a[text() = 'Trash bin']")
-    private WebElement trashbinbutton;
+    private WebElement trashBinButton;
     @FindBy(id = "create-suite-button")
-    private WebElement suitebutton;
+    private WebElement suiteButton;
     @FindBy(id = "create-case-button")
-    private WebElement casebutton;
+    private WebElement caseButton;
 
     private final static String endpoint = "project/ABC";
 
@@ -36,7 +36,7 @@ public class TestRepositoryPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         try {
-            return trashbinbutton.isDisplayed();
+            return title.isDisplayed();
         } catch (NoSuchElementException ex) {
             return false;
         }
