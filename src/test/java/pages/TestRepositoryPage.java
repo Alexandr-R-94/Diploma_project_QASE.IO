@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 public class TestRepositoryPage extends BasePage {
 
     @FindBy(xpath = "//h1[text() = 'Test repository']")
-    private WebElement title;
+    public WebElement title;
     @FindBy(xpath = "//a[@title = 'Import']")
     private WebElement importButton;
     @FindBy(xpath = "//button[@class = 'btn btn-secondary mt-3 me-2']")
@@ -41,4 +41,6 @@ public class TestRepositoryPage extends BasePage {
             return false;
         }
     }
+
+    public void titleText() {title.getText(); }
 }

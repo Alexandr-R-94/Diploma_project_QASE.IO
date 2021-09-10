@@ -6,10 +6,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProjectPage;
+import pages.TestRepositoryPage;
 import steps.AddProjectStep;
 import steps.LoginStep;
 
+
 public class SmokeTest extends BaseTest {
+
 
     @Test
     public void loginTestWithCorrectData() {
@@ -51,5 +54,19 @@ public class SmokeTest extends BaseTest {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    @Test
+    public void Test() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        projectPage.projectButton("sergey");
+        TestRepositoryPage testRepositoryPage = new TestRepositoryPage(browsersService, false);
+
+        Assert.assertTrue(testRepositoryPage.title.isDisplayed());
+
+
+
     }
 }
