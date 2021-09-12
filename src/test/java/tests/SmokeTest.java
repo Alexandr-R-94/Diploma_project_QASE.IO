@@ -1,12 +1,10 @@
 package tests;
 
 import baseEntities.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.ProjectPage;
-import steps.AddProjectStep;
+import pages.*;
+import steps.AddDeleteProjectStep;
 import steps.LoginStep;
 
 public class SmokeTest extends BaseTest {
@@ -16,40 +14,63 @@ public class SmokeTest extends BaseTest {
         logger.info("Ввод корректных данных логина и пароля");
         LoginPage loginPage = new LoginPage(browsersService, true);
         loginPage.setEmail(properties.getEmail());
-        loginPage.setPassword(properties.getPassword());
+        loginPage.setPassword(properties.getErrorPassword());
         loginPage.loginButton();
 
-
-        Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
+        Assert.assertEquals(loginPage.errorSelectorText(), "These credentials do not match our records.");
 
     }
-    @Test
-    public void loginTestWithCorrectDataSecond() {
-
-        LoginStep loginStep = new LoginStep(browsersService);
-                loginStep.loginWithBuilder(loginBuilder);
-
-        Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
-    }
-
-
 
     @Test
-    public void createNewProject(){
+    public void loginTestWithIncorrectDataSecond() {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
-        AddProjectStep addProjectStep = new AddProjectStep(browsersService);
-                addProjectStep.addProject(projectBuilder);
 
-                Assert.assertEquals(browsersService.getDriver().findElement(By.xpath("//p[@class='header']")).getText(), projectBuilder.getProjectName());
+    }
 
+    @Test
+    public void createNewProject() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        AddDeleteProjectStep addProjectStep = new AddDeleteProjectStep(browsersService);
+        addProjectStep.addProject(projectBuilder);
 
-//        RadioButton radioButton = new RadioButton(browsersService, By.name("access_type"));
-//        radioButton.selectByText("Public");
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+    }
+
+    @Test
+    public void deleteProject() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        AddDeleteProjectStep deleteProjectStep = new AddDeleteProjectStep(browsersService);
+        deleteProjectStep.deleteProject();
+
+    }
+
+    @Test
+    public void createWithCorrectCode() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        AddDeleteProjectStep incorrectCode = new AddDeleteProjectStep(browsersService);
+        incorrectCode.addErrorCode(projectBuilderError);
+
+    }
+
+    @Test
+    public void iFrame(){
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        projectPage.bellButton();
+        browsersService.getDriver().switchTo().frame("HW_frame");
+        Assert.assertEquals(projectPage.iFraimTitle(), "April 2021 Updates.");
+    }
+
+    @Test
+    public void Alert(){
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        projectPage.reportsButton();
+
     }
 }

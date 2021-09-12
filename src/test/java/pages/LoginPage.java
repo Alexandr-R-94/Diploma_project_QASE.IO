@@ -45,11 +45,18 @@ public class LoginPage extends BasePage {
     public void setEmail(String text) {
         emailInput.sendKeys(text);
     }
+
     public void setPassword(String text) {
         passwordInput.sendKeys(text);
     }
-    public void loginButton() {loginBtn.click(); }
-    public void errorSelectorText() {errorSelector.getText(); }
+
+    public void loginButton() {
+        loginBtn.click();
+    }
+
+    public String errorSelectorText() {
+        return errorSelector.getText();
+    }
 
 
 }

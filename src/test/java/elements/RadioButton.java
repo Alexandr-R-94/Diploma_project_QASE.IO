@@ -12,24 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RadioButton {
-
-    private BrowsersService browsersService;
     private List<WebElement> options = new ArrayList<>();
 
     public RadioButton(BrowsersService browsersService, By by) {
-
          options = browsersService.getDriver().findElements(by);
-
     }
 
-    public void selectByText(String optionName) {
+    public void selectByIndex(String value) {
         for (WebElement element : options) {
-         String textValue = element.findElement(By.xpath("//div[@class ='col-2']/div/label")).getText();
-            if (textValue.trim().equalsIgnoreCase(optionName)){
+            if (element.getAttribute("value").equalsIgnoreCase(value)) {
                 element.click();
                 break;
             }
         }
     }
-
 }

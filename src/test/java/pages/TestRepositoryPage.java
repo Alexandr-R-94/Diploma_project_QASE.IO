@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class TestRepositoryPage extends BasePage {
 
-    @FindBy(xpath = "//h1[text() = 'Test repository']")
+    @FindBy(xpath = "//p[@class='header']")
     private WebElement title;
     @FindBy(xpath = "//a[@title = 'Import']")
     private WebElement importButton;
@@ -21,8 +21,10 @@ public class TestRepositoryPage extends BasePage {
     private WebElement suiteButton;
     @FindBy(id = "create-case-button")
     private WebElement caseButton;
+    @FindBy(xpath = "//span[text() = 'Settings']")
+    private WebElement settings;
 
-    private final static String endpoint = "project/ABC";
+    private final static String endpoint = "project/123";
 
     public TestRepositoryPage(BrowsersService browsersService, boolean openPageByURL) {
         super(browsersService, openPageByURL);
@@ -40,5 +42,13 @@ public class TestRepositoryPage extends BasePage {
         } catch (NoSuchElementException ex) {
             return false;
         }
+    }
+
+    public void settingsClick() {
+        settings.click();
+    }
+
+    public String titleText(){
+        return title.getText();
     }
 }

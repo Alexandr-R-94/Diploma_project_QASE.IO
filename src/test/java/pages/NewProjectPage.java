@@ -20,6 +20,8 @@ public class NewProjectPage extends BasePage {
     private WebElement descriptionInput;
     @FindBy(xpath = "//button[text() ='Create project']")
     private WebElement createProjectButton;
+    @FindBy(className = "form-control-feedback")
+    private WebElement errorTitle;
     private final static String endpoint = "project/create";
 
     public NewProjectPage(BrowsersService browsersService, boolean openPageByURL) {
@@ -57,5 +59,9 @@ public class NewProjectPage extends BasePage {
 
     public void addButtonClick() {
         createProjectButton.click();
+    }
+
+    public String errorText(){
+       return errorTitle.getText();
     }
 }
