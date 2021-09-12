@@ -9,8 +9,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.*;
 
-public class AddDeleteProjectStep extends BaseStep {
-    public AddDeleteProjectStep(BrowsersService browsersService) {
+public class ProjectStep extends BaseStep {
+    public ProjectStep(BrowsersService browsersService) {
         super(browsersService);
     }
 
@@ -55,7 +55,15 @@ public class AddDeleteProjectStep extends BaseStep {
         newProjectPage.addButtonClick();
 
         Assert.assertEquals(newProjectPage.errorText(), "The code must be at least 2 characters.");
+    }
 
-
+    public void uploadingTestCase (String projectName, String pathToFile) {
+        ProjectPage projectPage = new ProjectPage(browsersService,false);
+        projectPage.projectButton(projectName);
+        TestRepositoryPage testRepositoryPage = new TestRepositoryPage(browsersService, false);
+        testRepositoryPage.importBtn();
+        ImportTestCasesPage importTestCasesPage = new ImportTestCasesPage(browsersService, false);
+        importTestCasesPage.setUploadFileButton(pathToFile);
+        importTestCasesPage.importButton();
     }
 }

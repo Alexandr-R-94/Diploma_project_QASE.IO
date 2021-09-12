@@ -54,13 +54,6 @@ public class APITests extends BaseApiTest {
 
         System.out.println(projectAPI);
 
-//        given()
-//                .when()
-//                .delete(String.format(ProjectEndpoints.DELETE_PROJECT, projectCode))
-//                .then()
-//                .log().body()
-//                .body("status", is(true))
-//                .statusCode(HttpStatus.SC_OK);
     }
 
 

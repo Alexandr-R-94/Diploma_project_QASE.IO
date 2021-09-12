@@ -3,20 +3,18 @@ package tests;
 import baseEntities.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.*;
-import steps.AddDeleteProjectStep;
+import steps.ProjectStep;
 import pages.LoginPage;
 import pages.ProjectPage;
 import pages.TestRepositoryPage;
-import steps.AddProjectStep;
 import steps.LoginStep;
 
 
 public class SmokeTest extends BaseTest {
 
-    @Test
-    public void loginTestWithCorrectData() {
-        logger.info("Ввод корректных данных логина и пароля");
+    @Test(priority = 4)
+    public void loginTestWithIncorrectDataTest() {
+        logger.info("Ввод некорректных данных логина и пароля");
         LoginPage loginPage = new LoginPage(browsersService, true);
         loginPage.setEmail(properties.getEmail());
         loginPage.setPassword(properties.getErrorPassword());
@@ -25,43 +23,43 @@ public class SmokeTest extends BaseTest {
         Assert.assertEquals(loginPage.errorSelectorText(), "These credentials do not match our records.");
 
     }
-    @Test
-    public void loginTestWithCorrectDataSecond() {
+    @Test(priority = 1)
+    public void loginTestWithCorrectDataTest() {
 
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
 
     }
 
-    @Test
-    public void createNewProject() {
+    @Test(dependsOnMethods = "loginTestWithCorrectDataTest", priority = 1)
+    public void createNewProjectTest() {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
-        AddDeleteProjectStep addProjectStep = new AddDeleteProjectStep(browsersService);
+        ProjectStep addProjectStep = new ProjectStep(browsersService);
         addProjectStep.addProject(projectBuilder);
 
     }
 
-    @Test
-    public void deleteProject() {
+    @Test(dependsOnMethods = "downloadTests")
+    public void deleteProjectTest() {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
-        AddDeleteProjectStep deleteProjectStep = new AddDeleteProjectStep(browsersService);
+        ProjectStep deleteProjectStep = new ProjectStep(browsersService);
         deleteProjectStep.deleteProject();
 
     }
 
     @Test
-    public void createWithCorrectCode() {
+    public void createWithIncorrectCodeTest() {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
-        AddDeleteProjectStep incorrectCode = new AddDeleteProjectStep(browsersService);
+        ProjectStep incorrectCode = new ProjectStep(browsersService);
         incorrectCode.addErrorCode(projectBuilderError);
 
     }
 
     @Test
-    public void iFrame(){
+    public void iFrameTest(){
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectPage projectPage = new ProjectPage(browsersService, false);
@@ -79,12 +77,12 @@ public class SmokeTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(dependsOnMethods = "createNewProjectTest")
     public void downloadTests() {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
-        AddProjectStep addProjectStep = new AddProjectStep(browsersService);
-        addProjectStep.uploadingTestCase("Some project", "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/resources/DEMO-2021-09-10.xml");
+        ProjectStep projectStep = new ProjectStep(browsersService);
+        projectStep.uploadingTestCase(projectBuilder.getProjectName(), "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/resources/DEMO-2021-09-10.xml");
 
         Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 4 cases were successfully imported!");
     }

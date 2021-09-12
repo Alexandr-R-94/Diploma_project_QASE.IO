@@ -24,13 +24,5 @@ public class AddProjectStep extends BaseStep {
         newProjectPage.addButtonClick();
     }
 
-    public void uploadingTestCase (String projectName, String pathToFile) {
-        ProjectPage projectPage = new ProjectPage(browsersService,false);
-        projectPage.projectButton(projectName);
-        TestRepositoryPage testRepositoryPage = new TestRepositoryPage(browsersService, false);
-        testRepositoryPage.importBtn();
-        ImportTestCasesPage importTestCasesPage = new ImportTestCasesPage(browsersService, false);
-        importTestCasesPage.setUploadFileButton(pathToFile);
-        importTestCasesPage.importButton();
-    }
+
 }
