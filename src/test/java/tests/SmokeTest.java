@@ -1,6 +1,7 @@
 package tests;
 
 import baseEntities.BaseTest;
+import com.sun.org.apache.bcel.internal.generic.LoadInstruction;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -69,4 +70,16 @@ public class SmokeTest extends BaseTest {
 
 
     }
+
+    @Test
+    public void downloadTests() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        AddProjectStep addProjectStep = new AddProjectStep(browsersService);
+        addProjectStep.uploadingTestCase("Some project", "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/resources/DEMO-2021-09-10.xml");
+
+        Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 4 cases were successfully imported!");
+    }
 }
+
+
