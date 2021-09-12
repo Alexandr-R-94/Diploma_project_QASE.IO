@@ -1,10 +1,10 @@
 package baseEntities;
 
-
 import core.BrowsersService;
 import core.ReadProperties;
 import models.LoginBuilder;
 import models.ProjectBuilder;
+import models.ProjectBuilderError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterMethod;
@@ -18,9 +18,10 @@ public abstract class BaseTest {
     protected final Logger logger = LogManager.getLogger(this);
     protected LoginBuilder loginBuilder;
     protected ProjectBuilder projectBuilder;
+    protected ProjectBuilderError projectBuilderError;
 
     @BeforeSuite
-    public void date1(){
+    public void LoginDate(){
         loginBuilder = LoginBuilder.builder()
                 .username("bestwarlock94@gmail.com")
                 .password("T@D_2Fk7Kt8Qp5q")
@@ -28,10 +29,19 @@ public abstract class BaseTest {
     }
 
     @BeforeSuite
-    public void date2(){
+    public void correctDate(){
         projectBuilder = ProjectBuilder.builder()
                 .projectName("sergey")
-                .projectCode("111")
+                .projectCode("123")
+                .description("sergey")
+                .build();
+    }
+
+    @BeforeSuite
+    public void inCorrectDate(){
+        projectBuilderError = ProjectBuilderError.builder()
+                .projectName("sergey")
+                .incorrectProjectCode("1")
                 .description("sergey")
                 .build();
     }

@@ -1,10 +1,10 @@
 package tests;
 
 import baseEntities.BaseTest;
-import com.sun.org.apache.bcel.internal.generic.LoadInstruction;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.*;
+import steps.AddDeleteProjectStep;
 import pages.LoginPage;
 import pages.ProjectPage;
 import pages.TestRepositoryPage;
@@ -14,60 +14,68 @@ import steps.LoginStep;
 
 public class SmokeTest extends BaseTest {
 
-
     @Test
     public void loginTestWithCorrectData() {
         logger.info("Ввод корректных данных логина и пароля");
         LoginPage loginPage = new LoginPage(browsersService, true);
         loginPage.setEmail(properties.getEmail());
-        loginPage.setPassword(properties.getPassword());
+        loginPage.setPassword(properties.getErrorPassword());
         loginPage.loginButton();
 
-
-        Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
+        Assert.assertEquals(loginPage.errorSelectorText(), "These credentials do not match our records.");
 
     }
     @Test
     public void loginTestWithCorrectDataSecond() {
 
         LoginStep loginStep = new LoginStep(browsersService);
-                loginStep.loginWithBuilder(loginBuilder);
+        loginStep.loginWithBuilder(loginBuilder);
 
-        Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
     }
 
-
-
     @Test
-    public void createNewProject(){
+    public void createNewProject() {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
-        AddProjectStep addProjectStep = new AddProjectStep(browsersService);
-                addProjectStep.addProject(projectBuilder);
+        AddDeleteProjectStep addProjectStep = new AddDeleteProjectStep(browsersService);
+        addProjectStep.addProject(projectBuilder);
 
-                Assert.assertEquals(browsersService.getDriver().findElement(By.xpath("//p[@class='header']")).getText(), projectBuilder.getProjectName());
-
-
-//        RadioButton radioButton = new RadioButton(browsersService, By.name("access_type"));
-//        radioButton.selectByText("Public");
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @Test
-    public void Test() {
+    public void deleteProject() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        AddDeleteProjectStep deleteProjectStep = new AddDeleteProjectStep(browsersService);
+        deleteProjectStep.deleteProject();
+
+    }
+
+    @Test
+    public void createWithCorrectCode() {
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        AddDeleteProjectStep incorrectCode = new AddDeleteProjectStep(browsersService);
+        incorrectCode.addErrorCode(projectBuilderError);
+
+    }
+
+    @Test
+    public void iFrame(){
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectPage projectPage = new ProjectPage(browsersService, false);
-        projectPage.projectButton("sergey");
-        TestRepositoryPage testRepositoryPage = new TestRepositoryPage(browsersService, false);
+        projectPage.bellButton();
+        browsersService.getDriver().switchTo().frame("HW_frame");
+        Assert.assertEquals(projectPage.iFraimTitle(), "April 2021 Updates.");
+    }
 
-        Assert.assertTrue(testRepositoryPage.title.isDisplayed());
-
-
+    @Test
+    public void Alert(){
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        projectPage.reportsButton();
 
     }
 
@@ -81,5 +89,3 @@ public class SmokeTest extends BaseTest {
         Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 4 cases were successfully imported!");
     }
 }
-
-

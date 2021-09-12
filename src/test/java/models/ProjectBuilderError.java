@@ -5,10 +5,11 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ProjectBuilder {
+public class ProjectBuilderError {
 
     String projectName;
-    String projectCode;
+    String incorrectProjectCode;
     String description;
+
 
 }

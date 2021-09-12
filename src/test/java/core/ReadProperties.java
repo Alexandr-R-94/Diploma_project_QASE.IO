@@ -32,6 +32,9 @@ public final class ReadProperties {
     public String getPassword() {
         return properties.getProperty("password");
     }
+    public String getErrorPassword() {
+        return properties.getProperty("errorpassword");
+    }
     public String getBrowserName() {
         return properties.getProperty("browser");
     }
