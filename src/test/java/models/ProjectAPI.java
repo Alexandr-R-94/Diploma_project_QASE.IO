@@ -9,11 +9,13 @@ import lombok.Data;
 public class ProjectAPI {
 
     @Expose
+    boolean status;
+    @Expose
     String title;
     @Expose
     String code;
     @Expose
     String description;
     String access;
-    String  group;
+    String group;
 }

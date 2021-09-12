@@ -1,5 +1,6 @@
 package tests.api;
 
+import adapters.ProjectAdapter;
 import baseEntities.BaseApiTest;
 import endpoints.ProjectEndpoints;
 import io.restassured.mapper.ObjectMapperType;
@@ -7,11 +8,12 @@ import models.ProjectAPI;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class APITests extends BaseApiTest {
-    protected String projectCode;
+    private String projectCode;
 
     @Test
     public void addProjectTest() {
@@ -22,7 +24,7 @@ public class APITests extends BaseApiTest {
                 .build();
 
 
-        projectCode =  given()
+        projectCode = given()
                 .body(projectAPI, ObjectMapperType.GSON)
                 .when()
                 .post(ProjectEndpoints.POST_ADD_PROJECT)
@@ -34,36 +36,31 @@ public class APITests extends BaseApiTest {
 
     @Test
     public void getAllProjectsTest() {
-        given()
-                .when()
-                .get(ProjectEndpoints.GET_ALL_PROJECTS)
-                .then()
-                .log().body()
-                .body("status", is(true))
-                .body("result.entities[0].code", is("DEMO"))
-                .statusCode(HttpStatus.SC_OK);
+        ProjectAPI projectAPI = new ProjectAdapter().getAllProjects();
+
+        System.out.println(projectAPI);
     }
 
     @Test(dependsOnMethods = "addProjectTest")
     public void getProjectTest() {
-        given()
-                .when()
-                .get(String.format(ProjectEndpoints.GET_PROJECT, projectCode))
-                .then()
-                .log().body()
-                .body("result.code", is(projectCode))
-                .statusCode(HttpStatus.SC_OK);
+        ProjectAPI projectAPI = new ProjectAdapter().getProject(projectCode);
+
+        System.out.println(projectAPI);
     }
 
     @Test(dependsOnMethods = "getProjectTest")
     public void deleteProjectTest() {
-        given()
-                .when()
-                .delete(String.format(ProjectEndpoints.DELETE_PROJECT, projectCode))
-                .then()
-                .log().body()
-                .body("status", is(true))
-                .statusCode(HttpStatus.SC_OK);
+        ProjectAPI projectAPI = new ProjectAdapter().deleteProject(projectCode);
+
+        System.out.println(projectAPI);
+
+//        given()
+//                .when()
+//                .delete(String.format(ProjectEndpoints.DELETE_PROJECT, projectCode))
+//                .then()
+//                .log().body()
+//                .body("status", is(true))
+//                .statusCode(HttpStatus.SC_OK);
     }
 
 
