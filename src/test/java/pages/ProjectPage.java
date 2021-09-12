@@ -40,6 +40,11 @@ public class ProjectPage extends BasePage {
 
     private final static String projectBtn = "//a[.='replace']";
 
+  @FindBy(id = "HW_badge_cont")
+    public WebElement bellBtn;
+
+   private final static String projectBtn = "//a[text()='replace']";
+
     public WebElement getProjectButton(String projectName) {
         return driver.findElement(By.xpath(projectBtn.replace("replace", projectName)));
     }
@@ -86,6 +91,10 @@ public class ProjectPage extends BasePage {
     public void bellButton() {
         bellBtn.click();
     }
+
+    public void projectButton(String projectName) {getProjectButton(projectName).click();}
+
+
 
     public String iFraimTitle(){
       return iFraimText.getText();

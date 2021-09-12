@@ -45,4 +45,9 @@ public final class ReadProperties {
         return Integer.parseInt(properties.getProperty("timeout"));
     }
 
+    public String getToken() {
+        return properties.getProperty("token"); }
+    public String getApiURL() {
+        return properties.getProperty("api_url"); }
+
 }

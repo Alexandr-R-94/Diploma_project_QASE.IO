@@ -23,6 +23,8 @@ public class TestRepositoryPage extends BasePage {
     private WebElement caseButton;
     @FindBy(xpath = "//span[text() = 'Settings']")
     private WebElement settings;
+    @FindBy(xpath = "//span[text()=' 1 suites and 4 cases were successfully imported!']")
+    public WebElement uploadDoneMessage;
 
     private final static String endpoint = "project/123";
 
@@ -51,4 +53,15 @@ public class TestRepositoryPage extends BasePage {
     public String titleText(){
         return title.getText();
     }
+
+    public void importBtn() {
+        importButton.click();
+    }
+
+    public void uploadMessage() {
+        uploadDoneMessage.getText();
+    }
+
+
+
 }
