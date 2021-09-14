@@ -53,12 +53,14 @@ public abstract class BaseTest {
     @BeforeMethod
     public void startBrowser() {
         browsersService = new BrowsersService();
+        logger.info("Открытие браузера");
     }
 
     @AfterMethod
     public void closeBrowser() {
         browsersService.getDriver().quit();
         browsersService = null;
+        logger.info("Закрытие браузера");
     }
 
 }

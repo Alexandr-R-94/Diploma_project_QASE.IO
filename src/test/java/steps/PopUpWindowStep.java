@@ -1,0 +1,22 @@
+package steps;
+
+import baseEntities.BaseStep;
+import core.BrowsersService;
+import org.testng.Assert;
+import pages.ProjectPage;
+
+public class PopUpWindowStep extends BaseStep {
+    public PopUpWindowStep(BrowsersService browsersService) {
+        super(browsersService);
+    }
+
+    public void popUpWindow(){
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        logger.info("Нажатие на кнопку уведомлений");
+        projectPage.bellButton();
+        logger.info("Переход в iframe через id");
+        browsersService.getDriver().switchTo().frame("HW_frame");
+        logger.info("Сравнение ожидаемого текста с фактической");
+        Assert.assertEquals(projectPage.iFraimTitle(), "April 2021 Updates.");
+    }
+}
