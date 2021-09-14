@@ -6,7 +6,7 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout>
-                <MarkerPatternSelector defaultPattern="%sn. %msg: Logger = %logger %L %d{yyyy-MM-dd HH:mm-ss} %n">
+                <MarkerPatternSelector defaultPattern="[%-5level] %msg: Logger=%logger %L %d{yyyy-MM-dd HH:mm} %n">
                     <PatternMatch key="CLASS" pattern="%sn. %msg: Class=%class%n"/>
                 </MarkerPatternSelector>
             </PatternLayout>

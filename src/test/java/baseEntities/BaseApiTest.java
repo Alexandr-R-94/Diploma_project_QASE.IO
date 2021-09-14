@@ -23,7 +23,6 @@ public abstract class BaseApiTest {
 @BeforeTest
     public void setupRestAssured() {
 
-
     properties = ReadProperties.getInstance();
 
     RestAssured.baseURI = ReadProperties.getInstance().getApiURL();
