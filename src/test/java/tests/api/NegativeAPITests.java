@@ -16,6 +16,7 @@ public class NegativeAPITests extends BaseApiTest {
     @Test(description = "Тест на нахождение ошибки при запросе некорректного адреса")
     @Severity(SeverityLevel.CRITICAL)
     public void getAllProjectsNegativeTest() {
+        logger.info("Начало теста на получение списка всех проектов с неправильным URL");
 
         given()
                 .when()
@@ -23,12 +24,14 @@ public class NegativeAPITests extends BaseApiTest {
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_NOT_FOUND);
+        logger.info("Окончание теста на получение списка всех проектов с неправильным URL");
     }
 
     @Link(name = "Документация к API тестам", type = "APIDoc")
     @Test(description = "Тест на нахождение ошибки при неверном запросе")
     @Severity(SeverityLevel.CRITICAL)
     public void getAllProjectsSecondNegativeTest() {
+        logger.info("Начало теста на получение списка всех проектов с использованием POST запроса");
 
         given()
                 .when()
@@ -36,5 +39,6 @@ public class NegativeAPITests extends BaseApiTest {
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_BAD_REQUEST);
+        logger.info("Окончание теста на получение списка всех проектов с использованием POST запроса");
     }
 }

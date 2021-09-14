@@ -20,6 +20,8 @@ public class SuccessfullyAPITests extends BaseApiTest {
     @Test(description = "Тест на создание проекта")
     @Severity(SeverityLevel.CRITICAL)
     public void addProjectTest() {
+        logger.info("Старт теста на добавление нового проекта");
+        logger.warn("Создание проекта с помощью Builder");
         ProjectAPI projectAPI = ProjectAPI.builder()
                 .title("Test API Project")
                 .code("API")
@@ -27,6 +29,7 @@ public class SuccessfullyAPITests extends BaseApiTest {
                 .build();
 
 
+        logger.info("Передача POST запроса для создания проекта.");
         projectCode = given()
                 .body(projectAPI, ObjectMapperType.GSON)
                 .when()
@@ -35,13 +38,17 @@ public class SuccessfullyAPITests extends BaseApiTest {
                 .log().body()
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().getString("result.code");
+        logger.warn("Окончание теста и получение уникального кода для дальнейшего использования");
     }
 
     @Link(name = "Документация к API тестам", type = "APIDoc")
     @Test(description = "Тест на получение всех проектов заданного пользователя")
     @Severity(SeverityLevel.NORMAL)
     public void getAllProjectsTest() {
+        logger.info("Старт теста на получение всех проектов пользователя с помощью адаптера");
         ProjectAPI projectAPI = new ProjectAdapter().getAllProjects();
+
+        logger.info("Окончание теста на получение всех проектов пользователя");
 
     }
 
@@ -49,7 +56,9 @@ public class SuccessfullyAPITests extends BaseApiTest {
     @Test(description = "Тест на получение проекта", dependsOnMethods = "addProjectTest")
     @Severity(SeverityLevel.NORMAL)
     public void getProjectTest() {
+        logger.info("Старт теста на получение проекта с уникальным кодом");
         ProjectAPI projectAPI = new ProjectAdapter().getProject(projectCode);
+        logger.info("Окончание теста на получение проекта с уникальным кодом");
 
     }
 
@@ -57,8 +66,8 @@ public class SuccessfullyAPITests extends BaseApiTest {
     @Test(description = "Тест на удаление проекта", dependsOnMethods = "getProjectTest")
     @Severity(SeverityLevel.CRITICAL)
     public void deleteProjectTest() {
+        logger.info("Старт теста на удаление проекта с уникальным кодом");
         ProjectAPI projectAPI = new ProjectAdapter().deleteProject(projectCode);
-
-
+        logger.info("Окончание теста на удаление проекта с уникальным кодом");
     }
 }

@@ -19,7 +19,7 @@ public abstract class BaseTest {
     protected ProjectBuilder projectBuilder;
     protected ProjectBuilderError projectBuilderError;
 
-    @BeforeSuite
+    @BeforeMethod
     public void LoginDate(){
         loginBuilder = LoginBuilder.builder()
                 .username("bestwarlock94@gmail.com")
@@ -27,7 +27,7 @@ public abstract class BaseTest {
                 .build();
     }
 
-    @BeforeSuite
+    @BeforeMethod
     public void correctDate(){
         projectBuilder = ProjectBuilder.builder()
                 .projectName("sergey")
@@ -36,7 +36,7 @@ public abstract class BaseTest {
                 .build();
     }
 
-    @BeforeSuite
+    @BeforeMethod
     public void inCorrectDate(){
         projectBuilderError = ProjectBuilderError.builder()
                 .projectName("sergey")
