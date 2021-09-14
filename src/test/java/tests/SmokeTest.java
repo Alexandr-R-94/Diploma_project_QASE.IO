@@ -22,7 +22,7 @@ public class SmokeTest extends BaseTest {
     public void loginTestWithIncorrectDataTest() {
         logger.error("Начало теста на ввод некорректных данных при регистрации");
         LoginStep loginStep = new LoginStep(browsersService);
-        loginStep.loginWithIncorrectDate();
+        loginStep.loginWithIncorrectDate("123@123.com", "12334");
         logger.error("Конец теста на ввод некорректных данных при регистрации");
 
     }
@@ -57,7 +57,7 @@ public class SmokeTest extends BaseTest {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep deleteProjectStep = new ProjectStep(browsersService);
-        deleteProjectStep.deleteProject();
+        deleteProjectStep.deleteProject(projectBuilder.getProjectName());
         logger.error("Начал теста на удаление проекта");
     }
 
@@ -105,7 +105,7 @@ public class SmokeTest extends BaseTest {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep projectStep = new ProjectStep(browsersService);
-        projectStep.uploadingTestCase(projectBuilder.getProjectName(), "D:/proect/Diploma_project_QASE.IO/src/test/resources/DEMO-2021-09-10.xml");
+        projectStep.uploadingTestCase(projectBuilder.getProjectName(), "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/java/files/DEMO-Test-Case.xml");
         logger.error("Конец теста на загрузку файла");
     }
 }

@@ -29,12 +29,12 @@ public class LoginStep extends BaseStep {
 
     }
 
-    public void loginWithIncorrectDate(){
+    public void loginWithIncorrectDate(String errorEmail, String errorPassword){
         LoginPage loginPage = new LoginPage(browsersService, true);
         logger.info("Ввод корректного логина");
-        loginPage.setEmail(properties.getEmail());
+        loginPage.setEmail(errorEmail);
         logger.info("Ввод некорректного пароля");
-        loginPage.setPassword(properties.getErrorPassword());
+        loginPage.setPassword(errorPassword);
         logger.info("Нажатие на кнопку ввода");
         loginPage.loginButton();
         logger.info("Сравнение ожидаемого текста с фактической");

@@ -3,6 +3,7 @@ package steps;
 import baseEntities.BaseStep;
 import core.BrowsersService;
 import elements.RadioButton;
+import io.qameta.allure.Step;
 import models.ProjectBuilder;
 import models.ProjectBuilderError;
 import org.openqa.selenium.By;
@@ -14,6 +15,7 @@ public class ProjectStep extends BaseStep {
         super(browsersService);
     }
 
+    @Step("Создание нового проекта с параметрами {projectBuilder}")
     public void addProject(ProjectBuilder projectBuilder) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Нажатие на кнопку создание проекта");
@@ -37,14 +39,14 @@ public class ProjectStep extends BaseStep {
         Assert.assertEquals(new TestRepositoryPage(browsersService, false).titleText(), projectBuilder.getProjectName());
 
     }
-
-    public void deleteProject() {
+    @Step("Удаление проекта с именем {projectName}")
+    public void deleteProject(String projectName) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Выбор проекта по имени");
-        projectPage.getProjectButton("sergey").click();
+        projectPage.getProjectButton(projectName).click();
         logger.info("Открытие страницы внутри проекта");
         TestRepositoryPage testRepositoryPage = new TestRepositoryPage(browsersService, false);
-        logger.info("Нажатие на кнопку насройки");
+        logger.info("Нажатие на кнопку настройки");
         testRepositoryPage.settingsClick();
         logger.info("Открытие страницы настроек");
         SettingsPage settingsPage = new SettingsPage(browsersService, false);
@@ -58,7 +60,7 @@ public class ProjectStep extends BaseStep {
         Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
 
     }
-
+    @Step("Попытка создания проекта с параметрами {projectBuilderError}")
     public void addErrorCode(ProjectBuilderError projectBuilderError) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Нажатие на кнопку создание проекта");
@@ -79,6 +81,7 @@ public class ProjectStep extends BaseStep {
         Assert.assertEquals(newProjectPage.errorText(), "The code must be at least 2 characters.");
     }
 
+    @Step("Импорт тест-кейса в проект с именем {projectName}")
     public void uploadingTestCase(String projectName, String pathToFile) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Выбор проекта по имени");
