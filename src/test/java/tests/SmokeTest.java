@@ -17,15 +17,6 @@ import steps.LoginStep;
 
 public class SmokeTest extends BaseTest {
 
-    @Link(name = "Тестируемый сайт", type = "mysite")
-    @Test(description = "Тест на проверку входа некорректного пользователя")
-    public void loginTestWithIncorrectDataTest() {
-        logger.error("Начало теста на ввод некорректных данных при регистрации");
-        LoginStep loginStep = new LoginStep(browsersService);
-        loginStep.loginWithIncorrectDate("123@123.com", "12334");
-        logger.error("Конец теста на ввод некорректных данных при регистрации");
-
-    }
 
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на логирование корректного пользователя")
@@ -38,7 +29,7 @@ public class SmokeTest extends BaseTest {
     }
 
     @Link(name = "Тестируемый сайт", type = "mysite")
-    @Test(description = "Тест на создание нового проекта", dependsOnMethods = "loginTestWithCorrectDataTest", priority = 1)
+    @Test(description = "Тест на создание нового проекта")
     @Severity(SeverityLevel.CRITICAL)
     public void createNewProjectTest() {
         logger.error("Начало теста на создание нового проекта");
@@ -60,6 +51,32 @@ public class SmokeTest extends BaseTest {
         deleteProjectStep.deleteProject(projectBuilder.getProjectName());
         logger.error("Начал теста на удаление проекта");
     }
+
+
+
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(dependsOnMethods = "createNewProjectTest", description = "Тест на импортирование в проект тест-кейса")
+    @Severity(SeverityLevel.MINOR)
+    public void downloadTests() {
+        logger.error("Начало теста на загрузку файла");
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        ProjectStep projectStep = new ProjectStep(browsersService);
+        projectStep.uploadingTestCase(projectBuilder.getProjectName(), "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/java/files/DEMO-Test-Case.xml");
+        logger.error("Конец теста на загрузку файла");
+    }
+  
+
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на проверку входа некорректного пользователя")
+    public void loginTestWithIncorrectDataTest() {
+        logger.error("Начало теста на ввод некорректных данных при регистрации");
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithIncorrectDate("123@123.com", "12334");
+        logger.error("Конец теста на ввод некорректных данных при регистрации");
+
+    }
+  
 
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на проверку граничных значений поля")
@@ -95,17 +112,5 @@ public class SmokeTest extends BaseTest {
         DialogWindowStep dialogWindowStep = new DialogWindowStep(browsersService);
         dialogWindowStep.dialogWindow();
         logger.error("Конец теста на открытие диалогового окна");
-    }
-
-    @Link(name = "Тестируемый сайт", type = "mysite")
-    @Test(dependsOnMethods = "createNewProjectTest", description = "Тест на импортирование в проект тест-кейса")
-    @Severity(SeverityLevel.MINOR)
-    public void downloadTests() {
-        logger.error("Начало теста на загрузку файла");
-        LoginStep loginStep = new LoginStep(browsersService);
-        loginStep.loginWithBuilder(loginBuilder);
-        ProjectStep projectStep = new ProjectStep(browsersService);
-        projectStep.uploadingTestCase(projectBuilder.getProjectName(), "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/java/files/DEMO-Test-Case.xml");
-        logger.error("Конец теста на загрузку файла");
     }
 }
