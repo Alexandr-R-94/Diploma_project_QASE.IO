@@ -61,7 +61,4 @@ public class TestRepositoryPage extends BasePage {
     public void uploadMessage() {
         uploadDoneMessage.getText();
     }
-
-
-
 }

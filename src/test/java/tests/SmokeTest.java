@@ -1,26 +1,35 @@
 package tests;
 
 import baseEntities.BaseTest;
+import io.qameta.allure.Link;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.DialogWindowStep;
 import steps.PopUpWindowStep;
 import steps.ProjectStep;
+import pages.LoginPage;
+import pages.ProjectPage;
 import pages.TestRepositoryPage;
 import steps.LoginStep;
 
 
 public class SmokeTest extends BaseTest {
 
-    @Test(priority = 4)
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на проверку входа некорректного пользователя")
     public void loginTestWithIncorrectDataTest() {
         logger.error("Начало теста на ввод некорректных данных при регистрации");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithIncorrectDate();
         logger.error("Конец теста на ввод некорректных данных при регистрации");
+
     }
 
-    @Test(priority = 1)
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на логирование корректного пользователя")
+    @Severity(SeverityLevel.BLOCKER)
     public void loginTestWithCorrectDataTest() {
         logger.error("Начало теста на ввод корректных данных при регистрации");
         LoginStep loginStep = new LoginStep(browsersService);
@@ -28,7 +37,9 @@ public class SmokeTest extends BaseTest {
         logger.error("Коекц теста на ввод корректных данных при регистрации");
     }
 
-    @Test(dependsOnMethods = "loginTestWithCorrectDataTest", priority = 1)
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на создание нового проекта", dependsOnMethods = "loginTestWithCorrectDataTest", priority = 1)
+    @Severity(SeverityLevel.CRITICAL)
     public void createNewProjectTest() {
         logger.error("Начало теста на создание нового проекта");
         LoginStep loginStep = new LoginStep(browsersService);
@@ -39,9 +50,10 @@ public class SmokeTest extends BaseTest {
 
     }
 
-    @Test(dependsOnMethods = "downloadTests")
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(dependsOnMethods = "downloadTests", description = "Тест на удаление проекта")
+    @Severity(SeverityLevel.CRITICAL)
     public void deleteProjectTest() {
-        logger.error("Начало теста на удаление проекта");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep deleteProjectStep = new ProjectStep(browsersService);
@@ -49,7 +61,9 @@ public class SmokeTest extends BaseTest {
         logger.error("Начал теста на удаление проекта");
     }
 
-    @Test
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на проверку граничных значений поля")
+    @Severity(SeverityLevel.NORMAL)
     public void createWithIncorrectCodeTest() {
         logger.error("Начало теста на проверку граничных значений");
         LoginStep loginStep = new LoginStep(browsersService);
@@ -59,7 +73,9 @@ public class SmokeTest extends BaseTest {
         logger.error("Конец теста на проверку граничных значений");
     }
 
-    @Test
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на обнаружение и взаимодействие с диалоговым окном")
+    @Severity(SeverityLevel.NORMAL)
     public void iFrameTest() {
         logger.error("Начало теста на открытие всплывающего окна");
         LoginStep loginStep = new LoginStep(browsersService);
@@ -69,7 +85,9 @@ public class SmokeTest extends BaseTest {
         logger.error("Конец теста на открытие всплывающего окна");
     }
 
-    @Test
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на проверку работы с диалоговым окном")
+    @Severity(SeverityLevel.NORMAL)
     public void Alert() {
         logger.error("Начало теста на открытие диалогового окна");
         LoginStep loginStep = new LoginStep(browsersService);
@@ -79,7 +97,9 @@ public class SmokeTest extends BaseTest {
         logger.error("Конец теста на открытие диалогового окна");
     }
 
-    @Test(dependsOnMethods = "createNewProjectTest")
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(dependsOnMethods = "createNewProjectTest", description = "Тест на импортирование в проект тест-кейса")
+    @Severity(SeverityLevel.MINOR)
     public void downloadTests() {
         logger.error("Начало теста на загрузку файла");
         LoginStep loginStep = new LoginStep(browsersService);

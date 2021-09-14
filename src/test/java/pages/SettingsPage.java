@@ -18,6 +18,7 @@ public class SettingsPage extends BasePage {
         super(browsersService, openPageByURL);
     }
 
+
     @Override
     protected void openPage() {
         browsersService.getDriver().get(ReadProperties.getInstance().getURL() + endpoint);
