@@ -3,6 +3,7 @@ package steps;
 import baseEntities.BaseStep;
 import core.BrowsersService;
 import elements.RadioButton;
+import io.qameta.allure.Step;
 import models.ProjectBuilder;
 import models.ProjectBuilderError;
 import org.openqa.selenium.By;
@@ -14,6 +15,7 @@ public class ProjectStep extends BaseStep {
         super(browsersService);
     }
 
+    @Step("Создание нового проекта с данными из {projectBuilder}")
     public void addProject(ProjectBuilder projectBuilder) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         projectPage.newProjectButton();
@@ -29,10 +31,10 @@ public class ProjectStep extends BaseStep {
         Assert.assertEquals(new TestRepositoryPage(browsersService, false).titleText(), projectBuilder.getProjectName());
 
     }
-
-    public void deleteProject() {
+    @Step("Удаление проекта c названием {projectName}")
+    public void deleteProject(String projectName) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
-        projectPage.getProjectButton("sergey").click();
+        projectPage.getProjectButton(projectName).click();
         TestRepositoryPage testRepositoryPage = new TestRepositoryPage(browsersService, false);
         testRepositoryPage.settingsClick();
         SettingsPage settingsPage = new SettingsPage(browsersService, false);
@@ -43,7 +45,7 @@ public class ProjectStep extends BaseStep {
         Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
 
     }
-
+    @Step("Попытка создания проекта с помощью {projectBuilderError} для проверки ввода граничных значений")
     public void addErrorCode(ProjectBuilderError projectBuilderError) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         projectPage.newProjectButton();
@@ -57,6 +59,7 @@ public class ProjectStep extends BaseStep {
         Assert.assertEquals(newProjectPage.errorText(), "The code must be at least 2 characters.");
     }
 
+    @Step("Загрузка в проект с названием {projectName} готового тест-кейcа")
     public void uploadingTestCase (String projectName, String pathToFile) {
         ProjectPage projectPage = new ProjectPage(browsersService,false);
         projectPage.projectButton(projectName);

@@ -12,8 +12,8 @@ public class ImportTestCasesPage extends BasePage {
     @FindBy(className = "filter-option-inner-inner")
     private WebElement title;
 
-    @FindBy(xpath = "//button[@aria-owns='bs-select-1']")
-    private WebElement dropDownButton;
+    @FindBy(xpath = "//span[.='Qase.io']/ancestor::button")
+    public WebElement dropDownButton;
 
     @FindBy(xpath = "//input[@type = 'file' and @name = 'file']")
     private WebElement uploadFileButton;
