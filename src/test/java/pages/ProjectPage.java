@@ -29,8 +29,6 @@ public class ProjectPage extends BasePage {
     @FindBy(tagName = "tbody")
     public WebElement titleLabel;
 
-    private String endpoint = "projects";
-
     @FindBy(id = "HW_badge_cont")
     private WebElement bellBtn;
 
@@ -39,6 +37,8 @@ public class ProjectPage extends BasePage {
 
 
     private final static String projectBtn = "//a[.='replace']";
+
+    private String endpoint = "projects";
 
 
 

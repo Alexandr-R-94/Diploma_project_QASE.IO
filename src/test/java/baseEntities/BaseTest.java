@@ -7,11 +7,10 @@ import models.ProjectBuilder;
 import models.ProjectBuilderError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
+import utils.Listener;
 
+@Listeners(Listener.class)
 public abstract class BaseTest {
     public BrowsersService browsersService;
     protected ReadProperties properties;
