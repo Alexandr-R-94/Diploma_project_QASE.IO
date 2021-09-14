@@ -32,7 +32,7 @@ public class ProjectPage extends BasePage {
     private WebElement bellBtn;
 
     @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
-    private WebElement iFraimText;
+    private WebElement iFrameText;
 
     private final static String projectBtn = "//a[.='replace']";
 
@@ -89,8 +89,8 @@ public class ProjectPage extends BasePage {
 
     public void projectButton(String projectName) {getProjectButton(projectName).click();}
 
-    public String iFraimTitle(){
-      return iFraimText.getText();
+    public String iFrameTitle(){
+      return iFrameText.getText();
     }
 
 }

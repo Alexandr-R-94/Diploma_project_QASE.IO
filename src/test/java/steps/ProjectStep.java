@@ -98,6 +98,28 @@ public class ProjectStep extends BaseStep {
         importTestCasesPage.importButton();
         logger.info("Сравнение ожидаемого текста с фактической");
         Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 4 cases were successfully imported!");
+    }
 
+    @Step("Создание нового проекта с именем {projectName}, уникальным кодом {projectCode} и описанием {descriptions}")
+    public void addDefectProject(String projectName, String projectCode, String descriptions) {
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        logger.info("Нажатие на кнопку создание проекта");
+        projectPage.newProjectButton();
+        logger.info("Открытие страницы нового проекта");
+        NewProjectPage newProjectPage = new NewProjectPage(browsersService, false);
+        logger.info("Заполнение поля Name");
+        newProjectPage.setName(projectName);
+        logger.info("Очистка поля Code");
+        newProjectPage.cleanCode();
+        logger.info("Заполнение поля Code");
+        newProjectPage.setCode(projectCode);
+        logger.info("Заполнение поля Description");
+        newProjectPage.setDescription(descriptions);
+        logger.info("Выбор типа доступа к проекту");
+        RadioButton radioButton = new RadioButton(browsersService, By.xpath("//input[@name ='access_type']"));
+        radioButton.selectByIndex("public");
+        logger.info("Нажатие на кнопку создать");
+        newProjectPage.addButtonClick();
+        Assert.assertEquals(new TestRepositoryPage(browsersService, false).titleText(), projectName);
     }
 }

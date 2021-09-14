@@ -25,6 +25,8 @@ public class TestRepositoryPage extends BasePage {
     private WebElement settings;
     @FindBy(xpath = "//span[text()=' 1 suites and 4 cases were successfully imported!']")
     public WebElement uploadDoneMessage;
+    @FindBy(xpath = "//a[@aria-label='Projects']/span")
+    private WebElement projectsBtn;
 
     private final static String endpoint = "project/123";
 
@@ -58,7 +60,5 @@ public class TestRepositoryPage extends BasePage {
         importButton.click();
     }
 
-    public void uploadMessage() {
-        uploadDoneMessage.getText();
-    }
+    public void projectsBtn() {projectsBtn.click();}
 }

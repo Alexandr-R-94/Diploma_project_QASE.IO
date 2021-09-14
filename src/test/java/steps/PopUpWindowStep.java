@@ -17,6 +17,6 @@ public class PopUpWindowStep extends BaseStep {
         logger.info("Переход в iframe через id");
         browsersService.getDriver().switchTo().frame("HW_frame");
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertEquals(projectPage.iFraimTitle(), "April 2021 Updates.");
+        Assert.assertEquals(projectPage.iFrameTitle(), "April 2021 Updates.");
     }
 }

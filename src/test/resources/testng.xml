@@ -3,14 +3,15 @@
 <suite name="Main Suite" thread-count="2" parallel="tests">
     <test name="Smoke">
         <classes>
-            <class name="tests.SmokeTest"></class>
+            <class name="tests.ui.SmokeTest"></class>
             <class name="tests.api.SuccessfullyAPITests"></class>
         </classes>
     </test>
     <test name="Regressions">
         <classes>
-            <class name="tests.RegressionsTests"></class>
+            <class name="tests.ui.RegressionsTests"></class>
             <class name="tests.api.NegativeAPITests"></class>
+            <class name="tests.ui.NegativeTests"></class>
         </classes>
     </test>
 </suite>
