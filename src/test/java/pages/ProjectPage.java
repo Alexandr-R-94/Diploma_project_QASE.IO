@@ -5,7 +5,6 @@ import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -36,7 +35,6 @@ public class ProjectPage extends BasePage {
 
     @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
     private WebElement iFraimText;
-
 
     private final static String projectBtn = "//a[.='replace']";
 
@@ -90,8 +88,6 @@ public class ProjectPage extends BasePage {
     }
 
     public void projectButton(String projectName) {getProjectButton(projectName).click();}
-
-
 
     public String iFraimTitle(){
       return iFraimText.getText();
