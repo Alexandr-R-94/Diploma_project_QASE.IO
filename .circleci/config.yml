@@ -11,7 +11,7 @@ jobs:
 
 
     working_directory: ~/repo
-    parallelism: 4
+    parallelism: 2
     environment:
     # get from git and get maven dependencies
     steps:
