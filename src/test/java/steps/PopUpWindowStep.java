@@ -15,6 +15,7 @@ public class PopUpWindowStep extends BaseStep {
         logger.info("Нажатие на кнопку уведомлений");
         projectPage.bellButton();
         logger.info("Переход в iframe через id");
+        Thread.sleep(3000);
         browsersService.getDriver().switchTo().frame("HW_frame");
         Thread.sleep(3000);
         logger.info("Сравнение ожидаемого текста с фактической");
