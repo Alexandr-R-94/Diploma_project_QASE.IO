@@ -9,7 +9,9 @@ jobs:
       - image: 'circleci/openjdk:latest-browsers'
 
 
+
     working_directory: ~/repo
+    parallelism: 4
     environment:
     # get from git and get maven dependencies
     steps:
