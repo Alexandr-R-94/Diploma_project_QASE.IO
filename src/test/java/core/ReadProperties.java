@@ -26,23 +26,11 @@ public final class ReadProperties {
     public String getURL() {
         return properties.getProperty("url");
     }
-    public String getEmail() {
-        return properties.getProperty("email");
-    }
-    public String getPassword() {
-        return properties.getProperty("password");
-    }
-    public String getErrorPassword() {
-        return properties.getProperty("errorpassword");
-    }
     public String getBrowserName() {
         return properties.getProperty("browser");
     }
     public boolean isHeadless() {
         return properties.getProperty("headless").equalsIgnoreCase("true");
-    }
-    public int getTimeOut() {
-        return Integer.parseInt(properties.getProperty("timeout"));
     }
 
     public String getToken() {

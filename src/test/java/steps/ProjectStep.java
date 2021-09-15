@@ -2,6 +2,7 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
+import elements.DropDownMenu;
 import elements.RadioButton;
 import io.qameta.allure.Step;
 import models.ProjectBuilder;
@@ -17,7 +18,7 @@ public class ProjectStep extends BaseStep {
 
     @Step("Создание нового проекта с параметрами {projectBuilder}")
     public void addProject(ProjectBuilder projectBuilder) {
-        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        ProjectPage projectPage = new ProjectPage(browsersService, true);
         logger.info("Нажатие на кнопку создание проекта");
         projectPage.newProjectButton();
         logger.info("Открытие страницы нового проекта");
@@ -82,7 +83,7 @@ public class ProjectStep extends BaseStep {
     }
 
     @Step("Импорт тест-кейса в проект с именем {projectName}")
-    public void uploadingTestCase(String projectName, String pathToFile) {
+    public void uploadingTestCase(String projectName, String pathToFile) throws InterruptedException {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Выбор проекта по имени");
         projectPage.projectButton(projectName);
@@ -92,12 +93,16 @@ public class ProjectStep extends BaseStep {
         testRepositoryPage.importBtn();
         logger.info("Открытие страницы загрузки");
         ImportTestCasesPage importTestCasesPage = new ImportTestCasesPage(browsersService, false);
+        importTestCasesPage.sourceTypeBtn();
+        DropDownMenu dropDownMenu = new DropDownMenu(browsersService, By.xpath("//div[@id='bs-select-1']//child::span[@class='import-dropdown-item team-member-name']"));
+        dropDownMenu.selectByName("TestRail");
+        Thread.sleep(5000);
         logger.info("Нажатие на кнопку выбора файла");
         importTestCasesPage.setUploadFileButton(pathToFile);
         logger.info("Нажатие на кнопку загрузить");
         importTestCasesPage.importButton();
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 4 cases were successfully imported!");
+        Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 3 cases were successfully imported!");
     }
 
     @Step("Создание нового проекта с именем {projectName}, уникальным кодом {projectCode} и описанием {descriptions}")
