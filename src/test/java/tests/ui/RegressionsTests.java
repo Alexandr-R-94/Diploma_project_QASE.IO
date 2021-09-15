@@ -69,7 +69,7 @@ public class RegressionsTests extends BaseTest {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep projectStep = new ProjectStep(browsersService);
-        projectStep.uploadingTestCase("Demo Project", "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/resources/qewd.xml", "TestRail");
+        projectStep.uploadingTestCase("Demo Project", "E:\\TMS testing\\Projects\\Diploma project of the site QASE.IO\\src\\test\\resources\\qewd.xml", "TestRail");
         logger.error("Конец теста на загрузку файла");
     }
 
