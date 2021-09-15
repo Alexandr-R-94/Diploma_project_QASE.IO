@@ -83,7 +83,7 @@ public class ProjectStep extends BaseStep {
     }
 
     @Step("Импорт тест-кейса в проект с именем {projectName}")
-    public void uploadingTestCase(String projectName, String pathToFile) throws InterruptedException {
+    public void uploadingTestCase(String projectName, String pathToFile, String sourceType) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Выбор проекта по имени");
         projectPage.projectButton(projectName);
@@ -95,8 +95,7 @@ public class ProjectStep extends BaseStep {
         ImportTestCasesPage importTestCasesPage = new ImportTestCasesPage(browsersService, false);
         importTestCasesPage.sourceTypeBtn();
         DropDownMenu dropDownMenu = new DropDownMenu(browsersService, By.xpath("//div[@id='bs-select-1']//child::span[@class='import-dropdown-item team-member-name']"));
-        dropDownMenu.selectByName("TestRail");
-        Thread.sleep(5000);
+        dropDownMenu.selectByName(sourceType);
         logger.info("Нажатие на кнопку выбора файла");
         importTestCasesPage.setUploadFileButton(pathToFile);
         logger.info("Нажатие на кнопку загрузить");

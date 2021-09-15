@@ -64,12 +64,12 @@ public class RegressionsTests extends BaseTest {
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на импортирование в проект тест-кейса")
     @Severity(SeverityLevel.MINOR)
-    public void downloadTests() throws InterruptedException {
+    public void downloadTests() {
         logger.error("Начало теста на загрузку файла");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep projectStep = new ProjectStep(browsersService);
-        projectStep.uploadingTestCase("Demo Project", "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/java/files/qewd.xml");
+        projectStep.uploadingTestCase("Demo Project", "src/test/java/files/qewd.xml", "TestRail");
         logger.error("Конец теста на загрузку файла");
     }
 
