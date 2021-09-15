@@ -40,7 +40,7 @@ public class RegressionsTests extends BaseTest {
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на обнаружение и взаимодействие с диалоговым окном")
     @Severity(SeverityLevel.NORMAL)
-    public void iFrameTest() {
+    public void iFrameTest() throws InterruptedException {
         logger.error("Начало теста на открытие всплывающего окна");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
