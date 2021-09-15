@@ -1,11 +1,18 @@
 package core;
 
+import java.awt.datatransfer.StringSelection;
+import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
 public final class ReadProperties {
     private static ReadProperties instance;
      static Properties properties;
+    private File file;
+    private ClassLoader classLoader;
+
+
 
     public ReadProperties() {
         properties = new Properties();
@@ -26,23 +33,11 @@ public final class ReadProperties {
     public String getURL() {
         return properties.getProperty("url");
     }
-    public String getEmail() {
-        return properties.getProperty("email");
-    }
-    public String getPassword() {
-        return properties.getProperty("password");
-    }
-    public String getErrorPassword() {
-        return properties.getProperty("errorpassword");
-    }
     public String getBrowserName() {
         return properties.getProperty("browser");
     }
     public boolean isHeadless() {
         return properties.getProperty("headless").equalsIgnoreCase("true");
-    }
-    public int getTimeOut() {
-        return Integer.parseInt(properties.getProperty("timeout"));
     }
 
     public String getToken() {
@@ -50,4 +45,16 @@ public final class ReadProperties {
     public String getApiURL() {
         return properties.getProperty("api_url"); }
 
+    public String pathFile() {
+        file = new File(Objects.requireNonNull(classLoader.getResource("qewd.xml")).getFile());
+
+        String absolutePath = file.getAbsolutePath();
+        System.out.println(absolutePath);
+        return absolutePath;
+    }
+
+
+
 }
+
+
