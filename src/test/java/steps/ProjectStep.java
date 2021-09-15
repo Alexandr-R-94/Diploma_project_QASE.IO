@@ -18,7 +18,7 @@ public class ProjectStep extends BaseStep {
 
     @Step("Создание нового проекта с параметрами {projectBuilder}")
     public void addProject(ProjectBuilder projectBuilder) {
-        ProjectPage projectPage = new ProjectPage(browsersService, true);
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Нажатие на кнопку создание проекта");
         projectPage.newProjectButton();
         logger.info("Открытие страницы нового проекта");
