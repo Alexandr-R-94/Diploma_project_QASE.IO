@@ -7,10 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.ProjectPage;
-import utils.Waits;
 
 public class PopUpWindowStep extends BaseStep {
-    private Waits waits;
     public PopUpWindowStep(BrowsersService browsersService) {
         super(browsersService);
     }
@@ -24,8 +22,9 @@ public class PopUpWindowStep extends BaseStep {
         //projectPage.bellButton();
         logger.info("Переход в iframe через id");
         browsersService.getDriver().switchTo().frame(0);
+        Thread.sleep(3000);
         WebElement element = browsersService.getDriver().findElement(By.xpath("//strong[.='April 2021 Updates.']"));
-        //element.click();
+        Thread.sleep(3000);
 
 
         logger.info("Сравнение ожидаемого текста с фактической");

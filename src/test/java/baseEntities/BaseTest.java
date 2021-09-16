@@ -10,10 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
 import utils.Listener;
 
-import java.awt.datatransfer.StringSelection;
-import java.io.File;
-import java.util.Objects;
-
 @Listeners(Listener.class)
 public abstract class BaseTest {
     public BrowsersService browsersService;

@@ -21,6 +21,7 @@ public abstract class BasePage {
         this.driver = browsersService.getDriver();
         properties = ReadProperties.getInstance();
 
+
         PageFactory.initElements(this.driver, this);
 
         if (openPageByURL) {
