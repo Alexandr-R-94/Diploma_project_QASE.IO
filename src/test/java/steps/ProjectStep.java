@@ -99,18 +99,14 @@ public class ProjectStep extends BaseStep {
         importTestCasesPage.sourceTypeBtn();
         DropDownMenu dropDownMenu = new DropDownMenu(browsersService, By.xpath("//div[@id='bs-select-1']//child::span[@class='import-dropdown-item team-member-name']"));
         dropDownMenu.selectByName(sourceType);
+        logger.info("Получение абсолютного пути к файлу");
+        String absolutePath = pathToFile();
         logger.info("Нажатие на кнопку выбора файла");
-        File f = new File("src/test/resources/qewd.xml");
-        String absolute = f.getAbsolutePath();
-        System.out.println(absolute);
-//        File file =new File(getClass().getClassLoader().getResource("qewd.xml").getFile());
-//        String pathToFile = file.getAbsolutePath().replace("%20", " ");
-//        System.out.println(pathToFile);
-        importTestCasesPage.setUploadFileButton(absolute);
+        importTestCasesPage.setUploadFileButton(absolutePath);
         logger.info("Нажатие на кнопку загрузить");
         importTestCasesPage.importButton();
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 3 cases were successfully imported!");
+        Assert.assertTrue(new TestRepositoryPage(browsersService, false).uploadDoneMessage.isDisplayed());
     }
 
     @Step("Создание нового проекта с именем {projectName}, уникальным кодом {projectCode} и описанием {descriptions}")
