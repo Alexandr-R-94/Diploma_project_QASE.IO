@@ -31,7 +31,7 @@ public class ProjectPage extends BasePage {
     @FindBy(xpath = "//div[@class='changelog text-center']")
     private WebElement bellBtn;
 
-    @FindBy(className = "logList")
+    @FindBy(xpath = "//div[@class='logList']")
     public WebElement iFrameText;
 
     private final static String projectBtn = "//a[.='replace']";
