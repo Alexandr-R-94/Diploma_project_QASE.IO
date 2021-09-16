@@ -17,7 +17,7 @@ public class PopUpWindowStep extends BaseStep {
         logger.info("Переход в iframe через id");
 //        Thread.sleep(3000);
         browsersService.getDriver().switchTo().frame(0);
-//        Thread.sleep(3000);
+          Thread.sleep(3000);
         logger.info("Сравнение ожидаемого текста с фактической");
         Assert.assertTrue(projectPage.iFrameText.isDisplayed());
     }
