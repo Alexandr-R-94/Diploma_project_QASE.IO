@@ -29,7 +29,7 @@ public class ProjectPage extends BasePage {
     public WebElement titleLabel;
 
     @FindBy(xpath = "//div[@class='changelog text-center']")
-    private WebElement bellBtn;
+    public WebElement bellBtn;
 
     @FindBy(xpath = "//div[@class='logList']")
     public WebElement iFrameText;
