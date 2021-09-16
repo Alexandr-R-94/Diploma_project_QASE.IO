@@ -24,7 +24,7 @@ public class PopUpWindowStep extends BaseStep {
         browsersService.getDriver().switchTo().frame(0);
         WebElement element = browsersService.getDriver().findElement(By.xpath("//h3[.='Latest changes']"));
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertTrue(element.isDisplayed());
-        //js.executeScript("arguments[0].scrollIntoView(true);", element);
+        //Assert.assertTrue(element.isDisplayed());
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }
