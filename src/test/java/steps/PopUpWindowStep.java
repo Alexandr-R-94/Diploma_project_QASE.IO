@@ -19,6 +19,6 @@ public class PopUpWindowStep extends BaseStep {
         browsersService.getDriver().switchTo().frame(0);
           Thread.sleep(3000);
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertTrue(projectPage.iFrameLogo().isDisplayed());
+        Assert.assertTrue(projectPage.iFrameText.isDisplayed());
     }
 }
