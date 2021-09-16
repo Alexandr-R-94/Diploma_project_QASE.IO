@@ -100,10 +100,13 @@ public class ProjectStep extends BaseStep {
         DropDownMenu dropDownMenu = new DropDownMenu(browsersService, By.xpath("//div[@id='bs-select-1']//child::span[@class='import-dropdown-item team-member-name']"));
         dropDownMenu.selectByName(sourceType);
         logger.info("Нажатие на кнопку выбора файла");
-        File file =new File(Objects.requireNonNull(getClass().getClassLoader().getResource("qewd.xml").getFile()));
-        String pathToFile = file.getAbsolutePath().replace("%20", " ");
-        System.out.println(pathToFile);
-        importTestCasesPage.setUploadFileButton(pathToFile);
+        File f = new File("src/test/resources/qewd.xml");
+        String absolute = f.getAbsolutePath();
+        System.out.println(absolute);
+//        File file =new File(getClass().getClassLoader().getResource("qewd.xml").getFile());
+//        String pathToFile = file.getAbsolutePath().replace("%20", " ");
+//        System.out.println(pathToFile);
+        importTestCasesPage.setUploadFileButton(absolute);
         logger.info("Нажатие на кнопку загрузить");
         importTestCasesPage.importButton();
         logger.info("Сравнение ожидаемого текста с фактической");
