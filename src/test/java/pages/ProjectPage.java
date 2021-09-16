@@ -28,10 +28,10 @@ public class ProjectPage extends BasePage {
     @FindBy(tagName = "tbody")
     public WebElement titleLabel;
 
-    @FindBy(xpath = "//div[@class='changelog text-center']")
-    private WebElement bellBtn;
+    @FindBy(id = "HW_badge_cont")
+    public WebElement bellBtn;
 
-    @FindBy(xpath = "//div[@class='logList']")
+    @FindBy(xpath = "//a[@class='logItem read seen']")
     public WebElement iFrameText;
 
     private static final By iFrame = By.xpath("//div[@class='logList']");
