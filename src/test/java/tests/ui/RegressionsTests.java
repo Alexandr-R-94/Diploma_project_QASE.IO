@@ -69,7 +69,7 @@ public class RegressionsTests extends BaseTest {
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep projectStep = new ProjectStep(browsersService);
-        projectStep.uploadingTestCase("Demo Project", properties.pathFile(), "TestRail");
+        projectStep.uploadingTestCase("Demo Project", "TestRail");
         logger.error("Конец теста на загрузку файла");
     }
 

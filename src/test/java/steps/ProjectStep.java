@@ -11,6 +11,9 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.*;
 
+import java.io.File;
+import java.util.Objects;
+
 public class ProjectStep extends BaseStep {
     public ProjectStep(BrowsersService browsersService) {
         super(browsersService);
@@ -83,7 +86,7 @@ public class ProjectStep extends BaseStep {
     }
 
     @Step("Импорт тест-кейса в проект с именем {projectName}")
-    public void uploadingTestCase(String projectName, String pathToFile, String sourceType) {
+    public void uploadingTestCase(String projectName, String sourceType) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Выбор проекта по имени");
         projectPage.projectButton(projectName);
@@ -97,6 +100,9 @@ public class ProjectStep extends BaseStep {
         DropDownMenu dropDownMenu = new DropDownMenu(browsersService, By.xpath("//div[@id='bs-select-1']//child::span[@class='import-dropdown-item team-member-name']"));
         dropDownMenu.selectByName(sourceType);
         logger.info("Нажатие на кнопку выбора файла");
+        File file =new File(Objects.requireNonNull(getClass().getClassLoader().getResource("qewd.xml").getFile()));
+        String pathToFile = file.getAbsolutePath().replace("%20", " ");
+        System.out.println(pathToFile);
         importTestCasesPage.setUploadFileButton(pathToFile);
         logger.info("Нажатие на кнопку загрузить");
         importTestCasesPage.importButton();

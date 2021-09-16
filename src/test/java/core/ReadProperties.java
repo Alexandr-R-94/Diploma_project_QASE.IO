@@ -45,13 +45,13 @@ public final class ReadProperties {
     public String getApiURL() {
         return properties.getProperty("api_url"); }
 
-    public String pathFile() {
-        file = new File(Objects.requireNonNull(classLoader.getResource("qewd.xml")).getFile());
-
-        String absolutePath = file.getAbsolutePath();
-        System.out.println(absolutePath);
-        return absolutePath;
-    }
+//    public String pathFile() {
+//        file = new File(Objects.requireNonNull(classLoader.getResource("qewd.xml")).getFile());
+//
+//        String absolutePath = file.getAbsolutePath();
+//        System.out.println(absolutePath);
+//        return absolutePath;
+//    }
 
 
 
