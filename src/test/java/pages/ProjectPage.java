@@ -29,7 +29,7 @@ public class ProjectPage extends BasePage {
     public WebElement titleLabel;
 
     @FindBy(id = "HW_badge_cont")
-    private WebElement bellBtn;
+    public WebElement bellBtn;
 
     @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
     private WebElement iFrameText;

@@ -2,6 +2,7 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import pages.ProjectPage;
 
@@ -11,9 +12,12 @@ public class PopUpWindowStep extends BaseStep {
     }
 
     public void popUpWindow(){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) browsersService.getDriver();
+
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Нажатие на кнопку уведомлений");
-        projectPage.bellButton();
+        jsExecutor.executeScript("arguments[0].click();", projectPage.bellBtn);
+//        projectPage.bellButton();
         logger.info("Переход в iframe через id");
         browsersService.getDriver().switchTo().frame("HW_frame");
         logger.info("Сравнение ожидаемого текста с фактической");
