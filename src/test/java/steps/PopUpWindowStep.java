@@ -27,7 +27,7 @@ public class PopUpWindowStep extends BaseStep {
 
         WebDriverWait wait = new WebDriverWait(browsersService.getDriver(), 10);
 
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Qase changelog")));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Qase changelog")));
 //        Thread.sleep(3000);
 //        WebElement element = browsersService.getDriver().findElement(By.xpath("//strong[.='April 2021 Updates.']"));
         Thread.sleep(3000);
