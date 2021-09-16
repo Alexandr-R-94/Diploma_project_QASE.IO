@@ -22,9 +22,9 @@ public class PopUpWindowStep extends BaseStep {
         //projectPage.bellButton();
         logger.info("Переход в iframe через id");
         browsersService.getDriver().switchTo().frame(0);
-        WebElement element = browsersService.getDriver().findElement(By.xpath("//h3[.='Latest changes']"));
+        WebElement element = browsersService.getDriver().findElement(By.xpath("//a[@data-id='194847']"));
         logger.info("Сравнение ожидаемого текста с фактической");
         //Assert.assertTrue(element.isDisplayed());
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        js.executeScript("arguments[0].click();", element);
     }
 }
