@@ -28,7 +28,7 @@ public class ProjectPage extends BasePage {
     @FindBy(tagName = "tbody")
     public WebElement titleLabel;
 
-    @FindBy(xpath = "//span[@class='HW_badge_cont HW_visible']")
+    @FindBy(xpath = "//div[@class='changelog text-center']")
     public WebElement bellBtn;
 
     @FindBy(xpath = "//a[@class='logItem read seen']")
