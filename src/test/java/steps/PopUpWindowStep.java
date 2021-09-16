@@ -23,7 +23,7 @@ public class PopUpWindowStep extends BaseStep {
         js.executeScript("arguments[0].click();", projectPage.bellBtn);
         //projectPage.bellButton();
         logger.info("Переход в iframe через id");
-        browsersService.getDriver().switchTo().frame(browsersService.getDriver().findElement(By.id("HW_frame")));
+        browsersService.getDriver().switchTo().frame(0);
         WebElement element = browsersService.getDriver().findElement(By.xpath("//strong[.='April 2021 Updates.']"));
         //element.click();
 
