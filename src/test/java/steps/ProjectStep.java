@@ -2,6 +2,7 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
+import elements.DropDownMenu;
 import elements.RadioButton;
 import io.qameta.allure.Step;
 import models.ProjectBuilder;
@@ -9,6 +10,9 @@ import models.ProjectBuilderError;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.*;
+
+import java.io.File;
+import java.util.Objects;
 
 public class ProjectStep extends BaseStep {
     public ProjectStep(BrowsersService browsersService) {
@@ -82,7 +86,7 @@ public class ProjectStep extends BaseStep {
     }
 
     @Step("Импорт тест-кейса в проект с именем {projectName}")
-    public void uploadingTestCase(String projectName, String pathToFile) {
+    public void uploadingTestCase(String projectName, String sourceType) {
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Выбор проекта по имени");
         projectPage.projectButton(projectName);
@@ -92,12 +96,17 @@ public class ProjectStep extends BaseStep {
         testRepositoryPage.importBtn();
         logger.info("Открытие страницы загрузки");
         ImportTestCasesPage importTestCasesPage = new ImportTestCasesPage(browsersService, false);
+        importTestCasesPage.sourceTypeBtn();
+        DropDownMenu dropDownMenu = new DropDownMenu(browsersService, By.xpath("//div[@id='bs-select-1']//child::span[@class='import-dropdown-item team-member-name']"));
+        dropDownMenu.selectByName(sourceType);
+        logger.info("Получение абсолютного пути к файлу");
+        String absolutePath = pathToFile();
         logger.info("Нажатие на кнопку выбора файла");
-        importTestCasesPage.setUploadFileButton(pathToFile);
+        importTestCasesPage.setUploadFileButton(absolutePath);
         logger.info("Нажатие на кнопку загрузить");
         importTestCasesPage.importButton();
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertEquals(new TestRepositoryPage(browsersService, false).uploadDoneMessage.getText(), "1 suites and 4 cases were successfully imported!");
+        Assert.assertTrue(new TestRepositoryPage(browsersService, false).uploadDoneMessage.isDisplayed());
     }
 
     @Step("Создание нового проекта с именем {projectName}, уникальным кодом {projectCode} и описанием {descriptions}")

@@ -8,7 +8,10 @@ jobs:
     docker:
       - image: 'circleci/openjdk:latest-browsers'
 
+
+
     working_directory: ~/repo
+
     environment:
     # get from git and get maven dependencies
     steps:
@@ -26,7 +29,7 @@ jobs:
       # run tests!
       - run:
           name: Running tests
-          command: mvn clean install
+          command: mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml
       - run:
           name: Generate allure report
           command: mvn allure:report

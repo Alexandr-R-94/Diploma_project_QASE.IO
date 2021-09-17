@@ -40,7 +40,7 @@ public class RegressionsTests extends BaseTest {
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на обнаружение и взаимодействие с диалоговым окном")
     @Severity(SeverityLevel.NORMAL)
-    public void iFrameTest() {
+    public void iFrameTest() throws InterruptedException {
         logger.error("Начало теста на открытие всплывающего окна");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
@@ -64,12 +64,12 @@ public class RegressionsTests extends BaseTest {
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на импортирование в проект тест-кейса")
     @Severity(SeverityLevel.MINOR)
-    public void downloadTests() {
+    public void uploadTests() {
         logger.error("Начало теста на загрузку файла");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);
         ProjectStep projectStep = new ProjectStep(browsersService);
-        projectStep.uploadingTestCase("Demo Project", "E:/TMS testing/Projects/Diploma project of the site QASE.IO/src/test/java/files/DEMO_Test_Case.xml");
+        projectStep.uploadingTestCase("Demo Project", "TestRail");
         logger.error("Конец теста на загрузку файла");
     }
 

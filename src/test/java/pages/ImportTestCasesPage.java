@@ -49,4 +49,8 @@ public class ImportTestCasesPage extends BasePage {
         importBtn.submit();
     }
 
+    public void sourceTypeBtn() {
+        dropDownButton.click();
+    }
+
 }

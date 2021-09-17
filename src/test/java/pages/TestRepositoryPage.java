@@ -23,7 +23,7 @@ public class TestRepositoryPage extends BasePage {
     private WebElement caseButton;
     @FindBy(xpath = "//span[text() = 'Settings']")
     private WebElement settings;
-    @FindBy(xpath = "//span[text()=' 1 suites and 4 cases were successfully imported!']")
+    @FindBy(xpath = "//span[@class='alert-message']")
     public WebElement uploadDoneMessage;
     @FindBy(xpath = "//a[@aria-label='Projects']/span")
     private WebElement projectsBtn;
