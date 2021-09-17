@@ -28,7 +28,7 @@ public class ProjectPage extends BasePage {
     @FindBy(tagName = "tbody")
     public WebElement titleLabel;
 
-    @FindBy(css = ".HW_badge_cont.HW_visible")
+    @FindBy(xpath = "//i[@class='far fa-fw fa-bell']")
     public WebElement bellBtn;
 
     @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
