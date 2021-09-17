@@ -28,13 +28,11 @@ public class ProjectPage extends BasePage {
     @FindBy(tagName = "tbody")
     public WebElement titleLabel;
 
-    @FindBy(xpath = "//div[@class='changelog text-center']")
+    @FindBy(id = "HW_badge_cont")
     public WebElement bellBtn;
 
-    @FindBy(id = "index")
-    public WebElement iFrameText;
-
-    private static final By iFrame = By.xpath("//div[@class='logList']");
+    @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
+    private WebElement iFrameText;
 
     private final static String projectBtn = "//a[.='replace']";
 
@@ -73,6 +71,10 @@ public class ProjectPage extends BasePage {
         workspaceBtn.click();
     }
 
+    public void billingButton() {
+        billingBtn.click();
+    }
+
     public void reportsButton() {
         reportsBtn.click();
     }
@@ -86,11 +88,6 @@ public class ProjectPage extends BasePage {
     }
 
     public void projectButton(String projectName) {getProjectButton(projectName).click();}
-
-    public WebElement iFrameLogo() {
-                return driver.findElement(iFrame);
-    }
-
 
     public String iFrameTitle(){
       return iFrameText.getText();

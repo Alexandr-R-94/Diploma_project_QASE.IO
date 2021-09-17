@@ -4,7 +4,6 @@ import baseEntities.BaseStep;
 import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.ProjectPage;
 
@@ -13,18 +12,17 @@ public class PopUpWindowStep extends BaseStep {
         super(browsersService);
     }
 
-    public void popUpWindow() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) browsersService.getDriver();
+    public void popUpWindow(){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) browsersService.getDriver();
 
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         logger.info("Нажатие на кнопку уведомлений");
-        js.executeScript("arguments[0].click();", projectPage.bellBtn);
-        //projectPage.bellButton();
+        jsExecutor.executeScript("arguments[0].click();", projectPage.bellBtn);
+//        projectPage.bellButton();
         logger.info("Переход в iframe через id");
-        browsersService.getDriver().switchTo().frame(0);
-        WebElement element = browsersService.getDriver().findElement(By.xpath("//a[@data-id='194847']"));
+        browsersService.getDriver().switchTo().frame("HW_frame");
+        browsersService.getWaits().waitForVisibility(By.xpath("//strong[text() = 'April 2021 Updates.']"));
         logger.info("Сравнение ожидаемого текста с фактической");
-        //Assert.assertTrue(element.isDisplayed());
-        js.executeScript("arguments[0].click();", element);
+//        Assert.assertEquals(projectPage.iFrameTitle(), "April 2021 Updates.");
     }
 }

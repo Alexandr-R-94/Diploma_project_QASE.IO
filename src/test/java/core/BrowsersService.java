@@ -6,10 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import utils.Waits;
 
 
 public class BrowsersService {
     private WebDriver driver;
+    private Waits waits;
 
     public BrowsersService() {
 
@@ -31,10 +33,15 @@ public class BrowsersService {
             default:
                 System.out.println("Browser " + ReadProperties.getInstance().getBrowserName() + " is not supported.");
         }
+        waits = new Waits(driver, ReadProperties.getInstance().getTimeOut());
     }
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public Waits getWaits() {
+        return waits;
     }
 
     public void sleep ( long millis){
