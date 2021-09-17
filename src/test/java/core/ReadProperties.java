@@ -45,6 +45,10 @@ public final class ReadProperties {
     public String getApiURL() {
         return properties.getProperty("api_url"); }
 
+    public int getTimeOut() {
+        return Integer.parseInt(properties.getProperty("timeout"));
+    }
+
 //    public String pathFile() {
 //        file = new File(Objects.requireNonNull(classLoader.getResource("qewd.xml")).getFile());
 //
