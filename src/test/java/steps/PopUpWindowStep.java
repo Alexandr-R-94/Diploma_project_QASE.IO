@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.ProjectPage;
+import utils.Waits;
 
 public class PopUpWindowStep extends BaseStep {
     public PopUpWindowStep(BrowsersService browsersService) {
@@ -24,17 +25,19 @@ public class PopUpWindowStep extends BaseStep {
         //projectPage.bellButton();
         logger.info("Переход в iframe через id");
         browsersService.getDriver().switchTo().frame(0);
-
-        WebDriverWait wait = new WebDriverWait(browsersService.getDriver(), 10);
-
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Qase changelog")));
+        Waits waits = new Waits(browsersService.getDriver(), 10);
+        waits.waitForVision(By.linkText("Qase changelog"));
+//
+//        WebDriverWait wait = new WebDriverWait(browsersService.getDriver(), 10);
+//
+//        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Qase changelog")));
 //        Thread.sleep(3000);
 //        WebElement element = browsersService.getDriver().findElement(By.xpath("//strong[.='April 2021 Updates.']"));
-        Thread.sleep(3000);
+      //  Thread.sleep(3000);
 
 
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertTrue(element.isDisplayed());
+      //  Assert.assertTrue(element.isDisplayed());
 
     }
 }
