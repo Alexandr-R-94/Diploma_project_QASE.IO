@@ -2,6 +2,7 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import pages.ProjectPage;
@@ -20,7 +21,8 @@ public class PopUpWindowStep extends BaseStep {
 //        projectPage.bellButton();
         logger.info("Переход в iframe через id");
         browsersService.getDriver().switchTo().frame("HW_frame");
+        browsersService.getWaits().waitForVisibility(By.xpath("//strong[text() = 'April 2021 Updates.']"));
         logger.info("Сравнение ожидаемого текста с фактической");
-        Assert.assertEquals(projectPage.iFrameTitle(), "April 2021 Updates.");
+//        Assert.assertEquals(projectPage.iFrameTitle(), "April 2021 Updates.");
     }
 }
