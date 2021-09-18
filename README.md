@@ -1,3 +1,3 @@
-# Diploma_project_QASE.IO
+# tms06Onl.framework.qase
 
 This project was prepared by Alexander Ryaby and Sergey Kostyukevich in preparation for the diploma work at the Teach Me Skills school
