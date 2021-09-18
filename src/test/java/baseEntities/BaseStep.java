@@ -17,7 +17,7 @@ public class BaseStep {
     }
 
     protected String pathToFile() {
-        File testCase = new File("src/test/resources/qewd.xml");
+        File testCase = new File("src/test/resources/TestRail_TestCase.xml");
         return testCase.getAbsolutePath();
         }
 

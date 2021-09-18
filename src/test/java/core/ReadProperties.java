@@ -50,7 +50,7 @@ public final class ReadProperties {
     }
 
 //    public String pathFile() {
-//        file = new File(Objects.requireNonNull(classLoader.getResource("qewd.xml")).getFile());
+//        file = new File(Objects.requireNonNull(classLoader.getResource("TestRail_TestCase.xml")).getFile());
 //
 //        String absolutePath = file.getAbsolutePath();
 //        System.out.println(absolutePath);
