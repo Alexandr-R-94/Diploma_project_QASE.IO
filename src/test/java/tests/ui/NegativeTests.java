@@ -11,7 +11,8 @@ import steps.ProjectStep;
 
 public class NegativeTests extends BaseTest {
 
-    @Test
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на проверку генерации скриншота в отчёте Allure")
     public void defectsTest() {
         logger.error("Начало теста на создание дефекта с генерацией Screenshot в Allure");
         LoginStep loginStep = new LoginStep(browsersService);

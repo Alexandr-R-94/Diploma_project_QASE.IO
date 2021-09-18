@@ -11,16 +11,12 @@ public class LoginPage extends BasePage {
 
     @FindBy(className = "logo")
     private WebElement titleLogo;
-
     @FindBy(id = "inputEmail")
     private WebElement emailInput;
-
     @FindBy(id = "inputPassword")
     private WebElement passwordInput;
-
     @FindBy(id = "btnLogin")
     private WebElement loginBtn;
-
     @FindBy(className = "form-control-feedback")
     private WebElement errorSelector;
 
@@ -42,18 +38,16 @@ public class LoginPage extends BasePage {
         }
     }
 
+
     public void setEmail(String text) {
         emailInput.sendKeys(text);
     }
-
     public void setPassword(String text) {
         passwordInput.sendKeys(text);
     }
-
     public void loginButton() {
         loginBtn.click();
     }
-
     public String errorSelectorText() {
         return errorSelector.getText();
     }

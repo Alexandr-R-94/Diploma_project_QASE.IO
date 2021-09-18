@@ -11,9 +11,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.*;
 
-import java.io.File;
-import java.util.Objects;
-
 public class ProjectStep extends BaseStep {
     public ProjectStep(BrowsersService browsersService) {
         super(browsersService);

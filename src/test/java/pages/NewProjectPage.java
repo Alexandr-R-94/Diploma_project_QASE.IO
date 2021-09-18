@@ -4,7 +4,6 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -46,21 +45,16 @@ public class NewProjectPage extends BasePage {
     public void setName(String name) {
         projectNameInput.sendKeys(name);
     }
-
     public void cleanCode() {projectCodeInput.clear();}
-
     public void setCode(String code) {
         projectCodeInput.sendKeys(code);
     }
-
     public void setDescription(String description) {
         descriptionInput.sendKeys(description);
     }
-
     public void addButtonClick() {
         createProjectButton.click();
     }
-
     public String errorText(){
        return errorTitle.getText();
     }

@@ -48,17 +48,15 @@ public class TestRepositoryPage extends BasePage {
         }
     }
 
+
     public void settingsClick() {
         settings.click();
     }
-
     public String titleText(){
         return title.getText();
     }
-
     public void importBtn() {
         importButton.click();
     }
-
     public void projectsBtn() {projectsBtn.click();}
 }

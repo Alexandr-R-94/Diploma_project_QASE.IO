@@ -4,10 +4,7 @@ import baseEntities.BaseTest;
 import io.qameta.allure.Link;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.ProjectPage;
 import steps.DialogWindowStep;
 import steps.LoginStep;
 import steps.PopUpWindowStep;
@@ -40,7 +37,7 @@ public class RegressionsTests extends BaseTest {
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на обнаружение и взаимодействие с диалоговым окном")
     @Severity(SeverityLevel.NORMAL)
-    public void iFrameTest() throws InterruptedException {
+    public void iFrameTest() {
         logger.error("Начало теста на открытие всплывающего окна");
         LoginStep loginStep = new LoginStep(browsersService);
         loginStep.loginWithBuilder(loginBuilder);

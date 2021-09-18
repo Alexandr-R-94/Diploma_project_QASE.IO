@@ -18,12 +18,10 @@ public class SettingsPage extends BasePage {
         super(browsersService, openPageByURL);
     }
 
-
     @Override
     protected void openPage() {
         browsersService.getDriver().get(ReadProperties.getInstance().getURL() + endpoint);
     }
-
 
     @Override
     public boolean isPageOpened() {
@@ -33,6 +31,7 @@ public class SettingsPage extends BasePage {
             return false;
         }
     }
+
 
     public void deleteButtonClick(){
         deleteButton.click();

@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 public class DialogPage extends BasePage {
     @FindBy(xpath = "//p[@class = 'description']")
     private WebElement upgradeText;
-
     @FindBy(css = ".btn.btn-invisible")
     private WebElement notBtn;
 
