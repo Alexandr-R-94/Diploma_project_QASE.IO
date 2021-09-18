@@ -30,7 +30,9 @@ public class DeleteProjectPage extends BasePage {
         }
     }
 
-    public void deleteButtonClick(){
+    public ProjectPage deleteButtonClick(){
         deleteButton.click();
+        logger.info("Нажатие на кнопку подтверждение удаления");
+        return new ProjectPage(browsersService, false);
     }
 }

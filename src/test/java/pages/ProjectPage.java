@@ -52,8 +52,10 @@ public class ProjectPage extends BasePage {
         return driver.findElement(By.xpath(projectBtn.replace("replace", projectName)));
     }
 
-    public void projectsButton() {
+    public ProjectPage projectsButton() {
         projectsBtn.click();
+        logger.info("Обновление страницы с проектами");
+        return this;
     }
     public void workspaceButton() {
         workspaceBtn.click();
@@ -61,18 +63,22 @@ public class ProjectPage extends BasePage {
     public void billingButton() {
         billingBtn.click();
     }
-    public void reportsButton() {
+    public DialogPage reportsButton() {
+        logger.info("Нажатие на кнопку отчета");
         reportsBtn.click();
+        logger.info("Открытие страницы диалогового окна");
+        return new DialogPage(browsersService, false);
     }
-    public void newProjectButton() {
+    public NewProjectPage newProjectButton() {
+        logger.info("Нажатие на кнопку создание проекта");
         newProjectBtn.click();
+        return new NewProjectPage(browsersService, false);
     }
-    public void bellButton() {
-        bellBtn.click();
-    }
-    public void projectButton(String projectName) {getProjectButton(projectName).click();}
-    public String iFrameTitle(){
-      return iFrameText.getText();
+    public TestRepositoryPage projectButton(String projectName) {
+        logger.info("Выбор проекта по имени");
+        getProjectButton(projectName).click();
+        logger.info("Открытие страницы внутри проекта");
+        return new TestRepositoryPage(browsersService, false);
     }
 
 

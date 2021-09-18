@@ -3,6 +3,8 @@ package pages;
 import baseEntities.BasePage;
 import core.BrowsersService;
 import core.ReadProperties;
+import elements.RadioButton;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,20 +44,42 @@ public class NewProjectPage extends BasePage {
     }
 
 
-    public void setName(String name) {
+    public NewProjectPage setName(String name) {
         projectNameInput.sendKeys(name);
+        logger.info("Заполнение поля Name");
+        return this;
     }
-    public void cleanCode() {projectCodeInput.clear();}
-    public void setCode(String code) {
+    public NewProjectPage cleanCode() {
+        projectCodeInput.clear();
+        logger.info("Очистка поля Code");
+        return this;
+    }
+    public NewProjectPage setCode(String code) {
         projectCodeInput.sendKeys(code);
+        logger.info("Заполнение поля Code");
+        return this;
     }
-    public void setDescription(String description) {
+    public NewProjectPage setDescription(String description) {
         descriptionInput.sendKeys(description);
+        logger.info("Заполнение поля Description");
+        return this;
     }
-    public void addButtonClick() {
+    public TestRepositoryPage successfulButtonClick() {
+        addButtonClick();
+        return new TestRepositoryPage(browsersService, false);
+    }
+    public NewProjectPage addButtonClick() {
         createProjectButton.click();
+        logger.info("Нажатие на кнопку создать");
+        return this;
     }
     public String errorText(){
        return errorTitle.getText();
+    }
+
+    public NewProjectPage radioButton(String value) {
+        RadioButton radioButton = new RadioButton(browsersService, By.xpath("//input[@name ='access_type']"));
+        radioButton.selectByIndex(value);
+        return this;
     }
 }

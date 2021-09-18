@@ -2,6 +2,8 @@ package baseEntities;
 
 import core.BrowsersService;
 import core.ReadProperties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -11,6 +13,7 @@ public abstract class BasePage {
     protected final BrowsersService browsersService;
     protected WebDriver driver;
     protected ReadProperties properties;
+    protected final Logger logger = LogManager.getLogger(this);
 
     protected abstract void openPage();
 
@@ -26,7 +29,6 @@ public abstract class BasePage {
         if (openPageByURL) {
             openPage();
         }
-
         waitForOpen();
     }
 

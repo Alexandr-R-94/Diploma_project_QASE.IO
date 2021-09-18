@@ -14,9 +14,4 @@ public class BaseStep {
         this.browsersService = browsersService;
     }
 
-    protected String pathToFile() {
-        File testCase = new File("src/test/resources/TestRail_TestCase.xml");
-        return testCase.getAbsolutePath();
-        }
-
 }

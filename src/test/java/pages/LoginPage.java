@@ -38,19 +38,32 @@ public class LoginPage extends BasePage {
         }
     }
 
-
-    public void setEmail(String text) {
-        emailInput.sendKeys(text);
-    }
-    public void setPassword(String text) {
-        passwordInput.sendKeys(text);
-    }
-    public void loginButton() {
-        loginBtn.click();
-    }
     public String errorSelectorText() {
         return errorSelector.getText();
     }
+
+
+    public LoginPage setEmail(String text) {
+        emailInput.sendKeys(text);
+        logger.info("Ввод корректного логина");
+        return this;
+    }
+    public LoginPage setPassword(String text) {
+        passwordInput.sendKeys(text);
+        logger.info("Ввод корректного пароля");
+        return this;
+    }
+    public LoginPage loginButton() {
+        loginBtn.click();
+        logger.info("Нажатие на кнопку ввода");
+        return this;
+    }
+    public ProjectPage successLoginButton() {
+        loginButton();
+        logger.info("Нажатие на кнопку ввода");
+    return new ProjectPage(browsersService, false);
+    }
+
 
 
 }

@@ -49,14 +49,18 @@ public class TestRepositoryPage extends BasePage {
     }
 
 
-    public void settingsClick() {
+    public SettingsPage settingsClick() {
         settings.click();
+        logger.info("Нажатие на кнопку настройки");
+        return new SettingsPage(browsersService, false);
     }
     public String titleText(){
         return title.getText();
     }
-    public void importBtn() {
+    public ImportTestCasesPage importBtn() {
         importButton.click();
+        logger.info("Нажатие на кнопку Import");
+        return new ImportTestCasesPage(browsersService, false);
     }
     public void projectsBtn() {projectsBtn.click();}
 }
