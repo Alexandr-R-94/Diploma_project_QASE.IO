@@ -12,14 +12,18 @@ public class PopUpWindowStep extends BaseStep {
     }
 
     public void popUpWindow(){
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) browsersService.getDriver();
 
-        ProjectPage projectPage = new ProjectPage(browsersService, false);
-        logger.info("Нажатие на кнопку уведомлений");
-        jsExecutor.executeScript("arguments[0].click();", projectPage.bellBtn);
-        logger.info("Переход в iframe через id");
-        browsersService.getDriver().switchTo().frame(0);
-        browsersService.getWaits().waitForVisibility(By.xpath("//strong[text() = 'April 2021 Updates.']"));
-        logger.info("Сравнение ожидаемого текста с фактической");
+        ProjectPage projectPage = new ProjectPage(browsersService, false)
+                .jsExecutor1()
+                .switchToFrameFromIndex2()
+                .getWaits3();
+//
+//        ProjectPage projectPage = new ProjectPage(browsersService, false);
+//        logger.info("Нажатие на кнопку уведомлений");
+//
+//        logger.info("Переход в iframe через id");
+//    //    browsersService.getDriver().switchTo().frame(0);
+//
+//        logger.info("Сравнение ожидаемого текста с фактической");
     }
 }

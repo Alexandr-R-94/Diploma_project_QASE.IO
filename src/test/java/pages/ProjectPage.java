@@ -4,6 +4,7 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -79,6 +80,20 @@ public class ProjectPage extends BasePage {
         getProjectButton(projectName).click();
         logger.info("Открытие страницы внутри проекта");
         return new TestRepositoryPage(browsersService, false);
+    }
+
+    public ProjectPage switchToFrameFromIndex2() {
+        browsersService.getDriver().switchTo().frame(0);
+        return this;
+    }
+    public ProjectPage jsExecutor1() {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) browsersService.getDriver();
+        jsExecutor.executeScript("arguments[0].click();", bellBtn);
+        return this;
+    }
+    public ProjectPage getWaits3() {
+        browsersService.getWaits().waitForVisibility(iFrameText);
+        return this;
     }
 
 
