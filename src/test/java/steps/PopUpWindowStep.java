@@ -13,7 +13,7 @@ public class PopUpWindowStep extends BaseStep {
     @Step("Взаимодействие с всплывающим окном IFrame")
     public void popUpWindow(){
         ProjectPage projectPage = new ProjectPage(browsersService, false)
-                .getWaitsText2()
+                .jsExecutorBellBtn()
                 .switchToFrameFromIndex()
                 .getWaitsText();
     }

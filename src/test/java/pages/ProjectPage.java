@@ -96,11 +96,4 @@ public class ProjectPage extends BasePage {
         browsersService.getWaits().waitForVisibility(iFrameText);
         return this;
     }
-
-    public ProjectPage getWaitsText2() {
-        browsersService.getWaits().waitForVisibility(By.xpath("//span[@data-count-unseen='2']"));
-        return this;
-    }
-
-
 }
