@@ -13,31 +13,23 @@ public class LoginStep extends BaseStep {
         super(browsersService);
     }
 
-
     @Step("Вход в систему с данными из {loginBuilder}")
-    public void loginWithBuilder(LoginBuilder loginBuilder){
-
-        LoginPage loginPage = new LoginPage(browsersService, true);
-        logger.info("Ввод корректного логина");
-        loginPage.setEmail(loginBuilder.getUsername());
-        logger.info("Ввод корректного пароля");
-        loginPage.setPassword(loginBuilder.getPassword());
-        logger.info("Нажатие на кнопку ввода");
-        loginPage.loginButton();
+    public void loginWithBuilder(LoginBuilder loginBuilder) {
+        ProjectPage projectPage = new LoginPage(browsersService, true)
+                .setEmail(loginBuilder.getUsername())
+                .setPassword(loginBuilder.getPassword())
+                .successLoginButton();
         logger.info("Ожидание появления списка проектов");
-        Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
-
+        Assert.assertTrue(projectPage.titleLabel.isDisplayed());
     }
 
-    public void loginWithIncorrectDate(String errorEmail, String errorPassword){
-        LoginPage loginPage = new LoginPage(browsersService, true);
-        logger.info("Ввод корректного логина");
-        loginPage.setEmail(errorEmail);
-        logger.info("Ввод некорректного пароля");
-        loginPage.setPassword(errorPassword);
-        logger.info("Нажатие на кнопку ввода");
-        loginPage.loginButton();
-        logger.info("Сравнение ожидаемого текста с фактической");
+    @Step("Вход в систему с некорректными данными {errorEmail} и {errorPassword}")
+    public void loginWithIncorrectDate(String errorEmail, String errorPassword) {
+        LoginPage loginPage = new LoginPage(browsersService, true)
+                .setEmail(errorEmail)
+                .setPassword(errorPassword)
+                .loginButton();
+        logger.info("Сравнение ожидаемого текста с фактическим");
         Assert.assertEquals(loginPage.errorSelectorText(), "These credentials do not match our records.");
     }
 }

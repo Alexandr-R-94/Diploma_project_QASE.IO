@@ -4,6 +4,7 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,7 @@ public class ProjectPage extends BasePage {
     public WebElement bellBtn;
     @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
     private WebElement iFrameText;
+
     private final static String projectBtn = "//a[.='replace']";
 
     private String endpoint = "projects";
@@ -52,8 +54,10 @@ public class ProjectPage extends BasePage {
         return driver.findElement(By.xpath(projectBtn.replace("replace", projectName)));
     }
 
-    public void projectsButton() {
+    public ProjectPage projectsButton() {
         projectsBtn.click();
+        logger.info("Обновление страницы с проектами");
+        return this;
     }
     public void workspaceButton() {
         workspaceBtn.click();
@@ -61,19 +65,35 @@ public class ProjectPage extends BasePage {
     public void billingButton() {
         billingBtn.click();
     }
-    public void reportsButton() {
+    public DialogPage reportsButton() {
+        logger.info("Нажатие на кнопку отчета");
         reportsBtn.click();
+        logger.info("Открытие страницы диалогового окна");
+        return new DialogPage(browsersService, false);
     }
-    public void newProjectButton() {
+    public NewProjectPage newProjectButton() {
+        logger.info("Нажатие на кнопку создание проекта");
         newProjectBtn.click();
+        return new NewProjectPage(browsersService, false);
     }
-    public void bellButton() {
-        bellBtn.click();
-    }
-    public void projectButton(String projectName) {getProjectButton(projectName).click();}
-    public String iFrameTitle(){
-      return iFrameText.getText();
+    public TestRepositoryPage projectButton(String projectName) {
+        logger.info("Выбор проекта по имени");
+        getProjectButton(projectName).click();
+        logger.info("Открытие страницы внутри проекта");
+        return new TestRepositoryPage(browsersService, false);
     }
 
-
+    public ProjectPage switchToFrameFromIndex() {
+        browsersService.getDriver().switchTo().frame(0);
+        return this;
+    }
+    public ProjectPage jsExecutorBellBtn() {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) browsersService.getDriver();
+        jsExecutor.executeScript("arguments[0].click();", bellBtn);
+        return this;
+    }
+    public ProjectPage getWaitsText() {
+        browsersService.getWaits().waitForVisibility(iFrameText);
+        return this;
+    }
 }

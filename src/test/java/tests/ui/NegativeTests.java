@@ -2,9 +2,7 @@ package tests.ui;
 
 import baseEntities.BaseTest;
 import io.qameta.allure.Link;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 import pages.TestRepositoryPage;
 import steps.LoginStep;
 import steps.ProjectStep;
@@ -23,7 +21,6 @@ public class NegativeTests extends BaseTest {
         testRepositoryPage.projectsBtn();
         projectStep = new ProjectStep(browsersService);
         projectStep.addDefectProject("Name", "name", "name");
-
         logger.error("Завершение теста на создание дефекта с генерацией Screenshot в Allure");
     }
 

@@ -2,8 +2,8 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
+import io.qameta.allure.Step;
 import org.testng.Assert;
-import pages.DialogPage;
 import pages.ProjectPage;
 
 public class DialogWindowStep extends BaseStep {
@@ -11,17 +11,12 @@ public class DialogWindowStep extends BaseStep {
         super(browsersService);
     }
 
-    public void dialogWindow(){
-        ProjectPage projectPage = new ProjectPage(browsersService, false);
-        logger.info("Нажатие на кнопку отчета");
-        projectPage.reportsButton();
-        logger.info("Открытие страницы диалогового окна");
-        DialogPage dialogPage = new DialogPage(browsersService, false);
-        logger.info("Проверка на появление данного окна");
-        dialogPage.textIsDisplay();
-        logger.info("Нажатие на кнопку закрытие окна");
-        dialogPage.notButton();
-
-        Assert.assertTrue(new ProjectPage(browsersService, false).titleLabel.isDisplayed());
+    @Step("Взаимодействие с диалоговым окном по расширению подписки")
+    public void dialogWindow() {
+        ProjectPage dialogPage = new ProjectPage(browsersService, false)
+                .reportsButton()
+                .textIsDisplay()
+                .notButton();
+        Assert.assertTrue(dialogPage.titleLabel.isDisplayed());
     }
 }

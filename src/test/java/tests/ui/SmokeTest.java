@@ -5,12 +5,11 @@ import io.qameta.allure.Link;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
-import steps.ProjectStep;
 import steps.LoginStep;
+import steps.ProjectStep;
 
 
 public class SmokeTest extends BaseTest {
-
 
     @Link(name = "Тестируемый сайт", type = "mysite")
     @Test(description = "Тест на логирование корректного пользователя")

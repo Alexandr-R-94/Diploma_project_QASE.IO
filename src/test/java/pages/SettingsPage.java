@@ -33,7 +33,9 @@ public class SettingsPage extends BasePage {
     }
 
 
-    public void deleteButtonClick(){
+    public DeleteProjectPage deleteButtonClick(){
         deleteButton.click();
+        logger.info("Нажатие на кнопку удаление");
+        return new DeleteProjectPage(browsersService, false);
     }
 }

@@ -30,9 +30,15 @@ public class DialogPage extends BasePage {
         }
     }
 
-    public void notButton() {
+    public ProjectPage notButton() {
         notBtn.click();
+        logger.info("Нажатие на кнопку закрытие окна");
+        return new ProjectPage(browsersService, false);
     }
 
-    public void textIsDisplay(){upgradeText.isDisplayed();}
+    public DialogPage textIsDisplay() {
+        upgradeText.isDisplayed();
+        logger.info("Проверка на появление данного окна");
+        return this;
+    }
 }
