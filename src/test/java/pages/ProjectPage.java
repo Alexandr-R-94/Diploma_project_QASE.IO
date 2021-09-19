@@ -27,6 +27,7 @@ public class ProjectPage extends BasePage {
     public WebElement bellBtn;
     @FindBy(xpath = "//strong[text() = 'April 2021 Updates.']")
     private WebElement iFrameText;
+
     private final static String projectBtn = "//a[.='replace']";
 
     private String endpoint = "projects";
@@ -82,17 +83,22 @@ public class ProjectPage extends BasePage {
         return new TestRepositoryPage(browsersService, false);
     }
 
-    public ProjectPage switchToFrameFromIndex2() {
+    public ProjectPage switchToFrameFromIndex() {
         browsersService.getDriver().switchTo().frame(0);
         return this;
     }
-    public ProjectPage jsExecutor1() {
+    public ProjectPage jsExecutorBellBtn() {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) browsersService.getDriver();
         jsExecutor.executeScript("arguments[0].click();", bellBtn);
         return this;
     }
-    public ProjectPage getWaits3() {
+    public ProjectPage getWaitsText() {
         browsersService.getWaits().waitForVisibility(iFrameText);
+        return this;
+    }
+
+    public ProjectPage getWaitsText2() {
+        browsersService.getWaits().waitForVisibility(By.xpath("//span[@data-count-unseen='2']"));
         return this;
     }
 

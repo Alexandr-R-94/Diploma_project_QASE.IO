@@ -3,12 +3,13 @@ package tests.api;
 import adapters.ProjectAdapter;
 import baseEntities.BaseApiTest;
 import endpoints.ProjectEndpoints;
-import io.qameta.allure.*;
+import io.qameta.allure.Link;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.mapper.ObjectMapperType;
 import models.ProjectAPI;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
-
 
 import static io.restassured.RestAssured.given;
 

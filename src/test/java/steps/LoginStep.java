@@ -13,9 +13,8 @@ public class LoginStep extends BaseStep {
         super(browsersService);
     }
 
-
     @Step("Вход в систему с данными из {loginBuilder}")
-    public void loginWithBuilder(LoginBuilder loginBuilder){
+    public void loginWithBuilder(LoginBuilder loginBuilder) {
         ProjectPage projectPage = new LoginPage(browsersService, true)
                 .setEmail(loginBuilder.getUsername())
                 .setPassword(loginBuilder.getPassword())
@@ -24,6 +23,7 @@ public class LoginStep extends BaseStep {
         Assert.assertTrue(projectPage.titleLabel.isDisplayed());
     }
 
+    @Step("Вход в систему с некорректными данными {errorEmail} и {errorPassword}")
     public void loginWithIncorrectDate(String errorEmail, String errorPassword) {
         LoginPage loginPage = new LoginPage(browsersService, true)
                 .setEmail(errorEmail)

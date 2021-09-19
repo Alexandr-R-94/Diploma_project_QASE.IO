@@ -6,7 +6,9 @@ import io.qameta.allure.Step;
 import models.ProjectBuilder;
 import models.ProjectBuilderError;
 import org.testng.Assert;
-import pages.*;
+import pages.NewProjectPage;
+import pages.ProjectPage;
+import pages.TestRepositoryPage;
 
 public class ProjectStep extends BaseStep {
     public ProjectStep(BrowsersService browsersService) {
@@ -21,19 +23,20 @@ public class ProjectStep extends BaseStep {
                 .cleanCode()
                 .setCode(projectBuilder.getProjectCode())
                 .setDescription(projectBuilder.getDescription())
-                        .radioButton("public")
-                                .successfulButtonClick();
+                .radioButton("public")
+                .successfulButtonClick();
         logger.info("Сравнение ожидаемого имени проекта с фактическим");
         Assert.assertEquals(testRepositoryPage.titleText(), projectBuilder.getProjectName());
     }
+
     @Step("Удаление проекта с именем {projectName}")
     public void deleteProject(String projectName) {
 
         ProjectPage projectPage = new ProjectPage(browsersService, false)
                 .projectButton(projectName)
-                        .settingsClick()
-                                .deleteButtonClick()
-                                        .deleteButtonClick();
+                .settingsClick()
+                .deleteButtonClick()
+                .deleteButtonClick();
         Assert.assertTrue(projectPage.titleLabel.isDisplayed());
     }
 
@@ -53,13 +56,13 @@ public class ProjectStep extends BaseStep {
 
     @Step("Импорт тест-кейса в проект с именем {projectName}")
     public void uploadingTestCase(String projectName, String sourceType) {
-         TestRepositoryPage testRepositoryPage = new ProjectPage(browsersService,false)
-                 .projectButton(projectName)
-                 .importBtn()
-                 .sourceTypeBtn()
-                 .dropDown(sourceType)
-                 .setUploadFileButton()
-                 .importButton();
+        TestRepositoryPage testRepositoryPage = new ProjectPage(browsersService, false)
+                .projectButton(projectName)
+                .importBtn()
+                .sourceTypeBtn()
+                .dropDown(sourceType)
+                .setUploadFileButton()
+                .importButton();
         Assert.assertTrue(testRepositoryPage.uploadDoneMessage.isDisplayed());
     }
 
