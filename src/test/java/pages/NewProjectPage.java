@@ -79,7 +79,7 @@ public class NewProjectPage extends BasePage {
 
     public NewProjectPage radioButton(String value) {
         RadioButton radioButton = new RadioButton(browsersService, By.xpath("//input[@name ='access_type']"));
-        radioButton.selectByIndex(value);
+        radioButton.selectByValue(value);
         return this;
     }
 }

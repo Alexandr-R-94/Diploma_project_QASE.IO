@@ -13,7 +13,7 @@ public class RadioButton {
          options = browsersService.getDriver().findElements(by);
     }
 
-    public void selectByIndex(String value) {
+    public void selectByValue(String value) {
         for (WebElement element : options) {
             if (element.getAttribute("value").equalsIgnoreCase(value)) {
                 element.click();
