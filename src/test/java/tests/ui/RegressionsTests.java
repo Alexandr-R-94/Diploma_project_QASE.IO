@@ -4,7 +4,10 @@ import baseEntities.BaseTest;
 import io.qameta.allure.Link;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import pages.ProjectPage;
 import steps.DialogWindowStep;
 import steps.LoginStep;
 import steps.PopUpWindowStep;
@@ -43,6 +46,21 @@ public class RegressionsTests extends BaseTest {
         loginStep.loginWithBuilder(loginBuilder);
         PopUpWindowStep popUpWindowStep = new PopUpWindowStep(browsersService);
         popUpWindowStep.popUpWindow();
+        logger.error("Конец теста на открытие всплывающего окна");
+    }
+
+    @Link(name = "Тестируемый сайт", type = "mysite")
+    @Test(description = "Тест на обнаружение и взаимодействие с диалоговым окном")
+    @Severity(SeverityLevel.NORMAL)
+    public void iFrameTest2() {
+        logger.error("Начало теста на открытие всплывающего окна");
+        LoginStep loginStep = new LoginStep(browsersService);
+        loginStep.loginWithBuilder(loginBuilder);
+        ProjectPage projectPage = new ProjectPage(browsersService, false);
+        projectPage.jsExecutorBellBtn();
+        projectPage.switchToFrameFromIndex();
+        WebElement element = browsersService.getDriver().findElement(By.xpath("//strong[text() = 'April 2021 Updates.']"));
+        System.out.println(element.getText());
         logger.error("Конец теста на открытие всплывающего окна");
     }
 
