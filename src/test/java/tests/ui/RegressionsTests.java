@@ -58,7 +58,7 @@ public class RegressionsTests extends BaseTest {
         loginStep.loginWithBuilder(loginBuilder);
         ProjectPage projectPage = new ProjectPage(browsersService, false);
         projectPage.jsExecutorBellBtn();
-        projectPage.switchToFrameFromIndex();
+        browsersService.getDriver().switchTo().frame(0);
         WebElement element = browsersService.getDriver().findElement(By.xpath("//strong[text() = 'April 2021 Updates.']"));
         System.out.println(element.getText());
         logger.error("Конец теста на открытие всплывающего окна");
