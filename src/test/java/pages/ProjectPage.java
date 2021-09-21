@@ -84,7 +84,7 @@ public class ProjectPage extends BasePage {
     }
 
     public ProjectPage switchToFrameFromIndex() {
-        browsersService.getDriver().switchTo().frame(0);
+        browsersService.getDriver().switchTo().frame(driver.findElement(By.cssSelector("iframe[class='HW_frame']")));
         return this;
     }
     public ProjectPage jsExecutorBellBtn() {
