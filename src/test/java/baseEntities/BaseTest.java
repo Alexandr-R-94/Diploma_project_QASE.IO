@@ -7,6 +7,7 @@ import models.ProjectBuilder;
 import models.ProjectBuilderError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utils.Listener;
 
@@ -18,6 +19,7 @@ public abstract class BaseTest {
     protected LoginBuilder loginBuilder;
     protected ProjectBuilder projectBuilder;
     protected ProjectBuilderError projectBuilderError;
+    protected WebDriver driver;
 
     @BeforeMethod
     public void LoginDate(){
